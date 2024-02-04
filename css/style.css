@@ -1,1 +1,78 @@
-a
+html {
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+body {
+    font-size: 1em;
+    font-family: 'Fredoka' sans-serif;
+}
+
+.container {
+    height: 100vh;
+}
+
+.input-numeric-container {
+    background: #fff;
+    padding: 1em;
+    margin: auto;
+    position: relative;
+    transform: translateY(160%);
+    max-width: 350px;
+}
+
+.table-numeric {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-numeric td {
+    vertical-align: top;
+    text-align: center;
+    width: 33.33333333333%;
+    border: 0;
+}
+
+.table-numeric button {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.5em 0.3em 1.5em 0.3em;
+    font-size: 1em;
+    border-radius: 0.7em;
+    outline: none;
+    user-select: none;
+}
+
+.table-numeric button:active {
+    top: 2px;
+}
+
+.key {
+    background: #fff;
+    border: 1px solid #d8d6d6;
+    border-radius: 20px;
+}
+
+.key-del {
+    background: #FF9800;
+    border: 1px solid #ca7800;
+    color: #fff;
+}
+
+.key-clear {
+    background: #E91E63;
+    border: 1px solid #c70a4b;
+    color: #fff;
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: no-drop;
+}
+
+[data-numeric="hidden"] .table-numeric {
+    display: none;
+}
