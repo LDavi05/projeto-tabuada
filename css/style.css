@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
 }
 body {
     font-size: 1em;
     font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
 }
 header {
     background-color: #f6f6f6;
@@ -29,7 +32,7 @@ header a {
     gap: 4px;
 }
 .container {
-    height: 100vh;
+ /* */
 }
 .numpad_area {
     position: absolute;
@@ -37,13 +40,14 @@ header a {
     bottom: 10px;
 }
 .input-numeric-container {
-    padding: 1em;
+    padding: 0 1em 1em;
     margin: auto;
     position: relative;
-    max-width: 350px;
+    max-width: 375px;
     font-size: 1.2rem;
 }
 .number_input {
+    font-family: 'Fredoka', sans-serif;
     border-radius: 10px;
     width: 100%;
     padding: 12px;
@@ -55,9 +59,30 @@ header a {
 .number_input:focus{
     border: 2px solid #9265ff;
 }
+.score_mark {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 375px;
+    padding: 0.3em 1.1em;
+}
+.score_mark .right, .score_mark .wrong {
+    display: flex;
+    gap: 5px;
+    vertical-align: middle;
+    align-items: center;
+    font-size: 1.4rem;
+}
+.right {
+    color: #84eb65;
+}
+.wrong {
+    color: #f76b6d;
+}
 .table-numeric {
     width: 100%;
     border-collapse: collapse;
+    
 }
 
 .table-numeric td {
@@ -78,6 +103,7 @@ header a {
     border-radius: 0.7em;
     outline: none;
     user-select: none;
+    font-family: 'Fredoka', sans-serif;
 }
 
 .table-numeric button:active {
@@ -93,15 +119,22 @@ header a {
 }
 
 .key-del {
-    background: #FF9800;
-    border: 1px solid #ca7800;
+    background: #f17375;
+    border: 1px solid #f06466;
     color: #fff;
 }
-
+.key-del:is(:active, :focus) {
+    background: #fb6164 !important;
+    border: 1px solid #f55658 !important;
+}
 .key-enter {
-    background: #9265ff;
+    background: #976cf9;
     border: 1px solid #8652ff;
     color: #fff;
+}
+.key-enter:is(:active, :focus){
+    background: #8d5ff8 !important;
+    border: 1px solid #6b2cfe !important;
 }
 
 button[disabled] {
@@ -116,7 +149,7 @@ button[disabled] {
     padding: 1em;
     margin: 20px auto;
     width: 100%;
-    max-width: 350px;
+    max-width: 375px;
     font-size: 3.8rem;
     align-items: center;
     text-align: center;
@@ -131,11 +164,11 @@ button[disabled] {
 .speed_bar {
     background-color: #9365ff34;
     width: 100%;
-    height: 30px;
+    height: 20px;
     border-radius: 10px;
 }
 .index {
-    height: 30px;
+    height: 100%;
     width: 20%;
     background-color: #9265ff;
     border-radius: 10px;
