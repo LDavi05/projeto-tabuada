@@ -6,15 +6,39 @@
     <meta name="viewport" content="width=device-width,  initial-scale=1.0">
     <title>Tabuada de Glécio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <header>
+        <a href="/">
+            <i class='bx bx-math'></i>
+            Tabuada de Glécio
+        </a>
+    </header>
     <main class="container">
-        <div class="input-numeric-container">
-            <table class="table-numeric">
-                <tbody>
+
+        <div class="bar_area">
+            <div class="speed_bar">
+                <span class="index"></span>
+            </div>
+        </div>
+
+        <section class="current_multiplication">
+            <span class="number number_1">
+                2
+            </span>
+            <span>x</span>
+            <span class="number number_1">
+                9
+            </span>
+        </section>
+
+
+        <div class="numpad_area">
+            <div class="input-numeric-container">
+                <input type="number" class="number_input" id="number_input">
+                <table class="table-numeric">
+                    <tbody>
                     <tr>
                         <td><button type="button" class="key" data-key="1">1</button></td>
                         <td><button type="button" class="key" data-key="2">2</button></td>
@@ -33,11 +57,12 @@
                     <tr>
                         <td><button type="button" class="key-del" disabled>Del</button></td>
                         <td><button type="button" class="key" data-key="0">0</button></td>
-                        <td><button type="button" class="key-clear" disabled>Clear</button></td>
+                        <td><button type="button" class="key-enter" disabled>OK</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        
+    </div>  
     </main>
+</body>
 </html>

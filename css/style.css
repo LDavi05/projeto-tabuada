@@ -1,26 +1,60 @@
-html {
-    font-size: 15px;
-    font-family: sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     font-size: 1em;
-    font-family: 'Fredoka' sans-serif;
+    font-family: 'Fredoka', sans-serif;
 }
-
+header {
+    background-color: #f6f6f6;
+    height: 80px;
+    padding: 0 20px;
+    display: flex;
+}
+header a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #9265ff;
+    align-self: center;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    gap: 4px;
+}
 .container {
     height: 100vh;
 }
-
+.numpad_area {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
 .input-numeric-container {
-    background: #fff;
     padding: 1em;
     margin: auto;
     position: relative;
-    transform: translateY(160%);
     max-width: 350px;
+    font-size: 1.2rem;
 }
-
+.number_input {
+    border-radius: 10px;
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    margin-bottom: 7px;
+    border: 2px solid #b49af1;
+    font-size: 1em;
+}
+.number_input:focus{
+    border: 2px solid #9265ff;
+}
 .table-numeric {
     width: 100%;
     border-collapse: collapse;
@@ -39,7 +73,7 @@ body {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 1.5em 0.3em 1.5em 0.3em;
+    padding: 1.2em 0.3em 1.2em 0.3em;
     font-size: 1em;
     border-radius: 0.7em;
     outline: none;
@@ -48,6 +82,8 @@ body {
 
 .table-numeric button:active {
     top: 2px;
+    background-color: #9365ff15;
+    border: 1px solid #9365ff30;
 }
 
 .key {
@@ -62,9 +98,9 @@ body {
     color: #fff;
 }
 
-.key-clear {
-    background: #E91E63;
-    border: 1px solid #c70a4b;
+.key-enter {
+    background: #9265ff;
+    border: 1px solid #8652ff;
     color: #fff;
 }
 
@@ -75,4 +111,33 @@ button[disabled] {
 
 [data-numeric="hidden"] .table-numeric {
     display: none;
+}
+.current_multiplication {
+    padding: 1em;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 350px;
+    font-size: 3.8rem;
+    align-items: center;
+    text-align: center;
+    color: #9265ff;
+}
+.bar_area {
+    padding: 1em;
+    margin: 8px auto;
+    width: 100%;
+    max-width: 500px;  
+}
+.speed_bar {
+    background-color: #9365ff34;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+}
+.index {
+    height: 30px;
+    width: 20%;
+    background-color: #9265ff;
+    border-radius: 10px;
+    display: flex;
 }
