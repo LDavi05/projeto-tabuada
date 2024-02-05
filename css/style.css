@@ -74,7 +74,7 @@ header a {
     font-size: 1.4rem;
 }
 .right {
-    color: #84eb65;
+    color: #72d453;
 }
 .wrong {
     color: #f76b6d;
@@ -82,7 +82,7 @@ header a {
 .table-numeric {
     width: 100%;
     border-collapse: collapse;
-    
+
 }
 
 .table-numeric td {
@@ -119,8 +119,8 @@ header a {
 }
 
 .key-del {
-    background: #f17375;
-    border: 1px solid #f06466;
+    background: #f17375d2;
+    border: 1px solid #f06466eb;
     color: #fff;
 }
 .key-del:is(:active, :focus) {
@@ -128,15 +128,15 @@ header a {
     border: 1px solid #f55658 !important;
 }
 .key-enter {
-    background: #976cf9;
-    border: 1px solid #8652ff;
+    background: #966cf9e0;
+    border: 1px solid #8652ffe8;
     color: #fff;
 }
 .key-enter:is(:active, :focus){
     background: #8d5ff8 !important;
     border: 1px solid #6b2cfe !important;
 }
-
+2 x 9 
 button[disabled] {
     opacity: 0.5;
     cursor: no-drop;
