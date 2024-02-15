@@ -158,7 +158,11 @@ button[disabled] {
     padding: 1em;
     margin: 8px auto;
     width: 100%;
-    max-width: 500px;  
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: middle;
 }
 .speed_bar {
     background-color: #9365ff34;
@@ -172,4 +176,49 @@ button[disabled] {
     background-color: #9265ff;
     border-radius: 10px;
     display: flex;
+}
+
+/* HomeScreen */
+
+.home_screen {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;  
+    position: absolute;
+    left: 0;
+    top: 80px;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.home_screen h3 {
+    font-size: 2rem;
+    color: #9265ff;
+}
+.home_screen p{
+    font-size: 1.2rem;
+    color: #afafaf;
+    margin-top: 3px;
+    text-align: center;
+}
+.start_btn {
+    padding: 1rem 3rem;
+    background-color: #9265ff;
+    border: 2px solid #7e50ea;
+    color: #fff;
+    border: none;
+    font-size: 1.3rem;
+    border-radius: 12px;
+    font-family: "Fredoka", sans-serif !important;
+    top: 10px;
+    margin-top: 5rem;
+    filter: drop-shadow(0px 7px 0px #6942c2);
+    cursor: pointer;
+}
+.start_btn:is(:active, :hover) {
+    position: relative;
+    transform: translateY(1.5px);
+    transition: all .1s ease;
+    filter: drop-shadow(0px 0px 0px #6942c2);
 }
