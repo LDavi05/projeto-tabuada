@@ -113,7 +113,7 @@ header a {
 
 .table-numeric button:active {
     top: 3px;
-    filter: none;
+    filter: none !important;
 }
 
 .key {
