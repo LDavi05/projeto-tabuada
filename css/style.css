@@ -31,6 +31,9 @@ header a {
     text-align: center;
     gap: 4px;
 }
+.hide {
+    display: none !important;
+}
 .container {
  /* */
 }
@@ -180,7 +183,8 @@ button[disabled] {
 
 /* HomeScreen */
 
-.home_screen {
+.home_screen,
+.final_screen {
     background-color: #fff;
     width: 100%;
     height: 100%;  
@@ -192,17 +196,23 @@ button[disabled] {
     flex-direction: column;
     align-items: center;
 }
-.home_screen h3 {
+.home_screen h3,
+.final_screen h3 {
     font-size: 2rem;
     color: #9265ff;
 }
-.home_screen p{
+.home_screen p,
+.final_screen p{
     font-size: 1.2rem;
     color: #afafaf;
     margin-top: 3px;
     text-align: center;
 }
-.start_btn {
+.final_screen p {
+    margin-top: 10px !important;
+}
+.start_btn,
+.restart_btn {
     padding: 1rem 3rem;
     background-color: #9265ff;
     border: 2px solid #7e50ea;
@@ -212,13 +222,37 @@ button[disabled] {
     border-radius: 12px;
     font-family: "Fredoka", sans-serif !important;
     top: 10px;
-    margin-top: 5rem;
+    margin-top: 10rem;
     filter: drop-shadow(0px 7px 0px #6942c2);
     cursor: pointer;
+    align-items: center;
+    vertical-align: middle;
 }
-.start_btn:is(:active, :hover) {
+
+.start_btn:is(:active, :hover),
+.restart_btn:is(:active, :hover) {
     position: relative;
     transform: translateY(1.5px);
     transition: all .1s ease;
     filter: drop-shadow(0px 0px 0px #6942c2);
+}
+
+/* Final Screen */
+.results {
+    display: flex;
+    max-width: 180px;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+.result {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.result-number {
+    font-size: 2.5rem;
+}
+.result-text {
+    font-size: 1.3rem;
 }

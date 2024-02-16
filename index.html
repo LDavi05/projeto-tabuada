@@ -44,11 +44,11 @@
                 <span class="wrong">
                     <i class='bx bx-angry' ></i>
                     Erros:
-                    <span></span>/10
+                    <span></span>
                 </span>
             </div>
             <div class="input-numeric-container">
-                <input type="number" class="number_input" id="number_input">
+                <input type="number" disabled class="number_input" id="number_input">
                 <table class="table-numeric">
                     <tbody>
                     <tr>
@@ -77,13 +77,39 @@
     </div>  
     </main>
 
-    <section class="home_screen">
+    <section class="home_screen hide">
         <h3>Jogo da tabuada de Glécio</h3>
         <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
 
-        <button class="start_btn">Começar</button>
+        <button class="start_btn">
+            <i class='bx bxs-right-arrow' ></i>
+            Começar
+        </button>
     </section>
     
+
+    <section class="final_screen">
+        <h3>O Tempo Acabou!</h3>
+        <p>Seu Resultado:</p>
+
+        <div class="results">
+            <div class="result right">
+                <span class="result-number">10</span>
+                <span class="result-text">Acertos</span>
+            </div>
+            <div class="result wrong">
+                <span class="result-number">10</span>
+                <span class="result-text">Erros</span>
+            </div>
+        </div>
+
+        <button class="restart_btn">
+            <i class='bx bx-revision' ></i>
+            Reiniciar
+        </button>
+    </section>
+    
+
     <script src="./js/script.js"></script>
 </body>
 </html>
