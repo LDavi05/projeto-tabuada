@@ -1,6 +1,6 @@
 // defininição das variáveis globais
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
-let tempoRestante = 60;
+let tempoRestante = 600;
 let intervalo;
 
 function iniciarTempo() {
@@ -11,12 +11,12 @@ function iniciarTempo() {
       clearInterval(intervalo);
       exibirTelaFinal();
     }
-  }, 1000);
+  }, 100);
 }
 
 function atualizarBarraDeTempo() {
   const timeBar = document.querySelector(".index");
-  const porcentagem = (tempoRestante / 60) * 100;
+  const porcentagem = (tempoRestante / 600) * 100;
   timeBar.style.width = porcentagem + "%";
 }
 
