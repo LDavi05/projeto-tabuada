@@ -37,18 +37,18 @@
         <div class="numpad_area">
             <div class="score_mark">
                 <span class="right">
-                    <i class='bx bxs-cool'></i>
+                    <i class='bx bx-cool'></i>
                     Acertos:
                     <span></span>
                 </span>
                 <span class="wrong">
-                    <i class='bx bxs-angry' ></i>
+                    <i class='bx bx-angry' ></i>
                     Erros:
                     <span></span>
                 </span>
             </div>
             <div class="input-numeric-container">
-                <input type="number" disabled class="number_input" id="number_input">
+                <input type="number" class="number_input" id="number_input" readonly>
                 <table class="table-numeric">
                     <tbody>
                     <tr>
@@ -67,21 +67,17 @@
                         <td><button type="button" class="key" data-key="9">9</button></td>
                     </tr>
                     <tr>
-                        <td><button type="button" class="key key-del" data-key="DEL">
-                            <span><i class='bx bxs-tag-x'></i></span>
-                        </button></td>
+                        <td><button type="button" class="key key-del" data-key="DEL">Del</button></td>
                         <td><button type="button" class="key" data-key="0">0</button></td>
-                        <td><button type="button" class="key key-enter" data-key="OK">
-                            <span><i class='bx bx-subdirectory-left'></i></span>
-                        </button></td>
+                        <td><button type="button" class="key key-enter" data-key="OK">OK</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>  
     </main>
-
-    <section class="home_screen hide">
+    
+    <section class="home_screen">
         <h3>Jogo da tabuada de Glécio</h3>
         <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
 
@@ -98,11 +94,11 @@
 
         <div class="results">
             <div class="result right">
-                <span class="result-number">10</span>
+                <span class="result-number correct"></span>
                 <span class="result-text">Acertos</span>
             </div>
             <div class="result wrong">
-                <span class="result-number">10</span>
+                <span class="result-number incorrect"></span>
                 <span class="result-text">Erros</span>
             </div>
         </div>
@@ -113,7 +109,6 @@
         </button>
     </section>
     
-
     <script src="./js/script.js"></script>
 </body>
 </html>

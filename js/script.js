@@ -1,6 +1,11 @@
 // defininição das variáveis globais
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 
+// iniciar o jogo
+document.querySelector(".start_btn").addEventListener("click", function() {
+  document.querySelector(".home_screen").classList.add("hide");
+});
+
 // função para gerar uma multiplicação aleatória
 function gerarNovaMultiplicacao() {
   multiplicando = Math.floor(Math.random() * 8) + 2;
@@ -25,12 +30,7 @@ document.querySelector(".key-enter").addEventListener("click", function() {
     acertos++;
   } else {
     erros++;
-    if (erros === 10) {
-      alert("game over");
-      reiniciar();
-      return;
     }
-  }
   
   gerarNovaMultiplicacao();
   
