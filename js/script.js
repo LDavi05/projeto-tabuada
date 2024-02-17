@@ -105,7 +105,6 @@ for (i = 0; i < keys.length; i++) {
 document.addEventListener("keydown", function(e) {
   const key = e.key;
   const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-  const okKey = "Enter";
   const delKey = "Backspace";
   
   if (!teclaPressionada) {
@@ -113,7 +112,7 @@ document.addEventListener("keydown", function(e) {
       document.querySelector(`.key[data-key="${key}"]`).click();
     } else if (key === delKey) {
       document.querySelector(".key-del").click();
-    } else if (key === okKey) {
+    } else if (key === "Enter") {
       document.querySelector(".key-enter").click();
     }
     
@@ -121,6 +120,12 @@ document.addEventListener("keydown", function(e) {
     setTimeout(() => {
       teclaPressionada = false;
     }, 100);
+  }
+});
+
+document.addEventListener("keyup", function(e) {
+  if (e.key === "Enter") {
+    teclaPressionada = "false";
   }
 });
 
