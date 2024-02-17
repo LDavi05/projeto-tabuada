@@ -2,7 +2,6 @@
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 let tempoRestante = 60;
 let intervalo;
-let teclaAnterior = null;
 
 function iniciarTempo() {
   intervalo = setInterval(() => {
@@ -107,17 +106,14 @@ document.addEventListener("keydown", function(e) {
   const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const delKey = "Backspace";
   
-  if (key === teclaAnterior) return;
-  
   if (numericKeys.includes(key)) {
     document.querySelector(`.key[data-key="${key}"]`).click();
   } else if (key === delKey) {
     document.querySelector(".key-del").click();
   } else if (key === "Enter") {
+    e.preventDefault();
     document.querySelector(".key-enter").click();
   }
-  
-  teclaAnterior = key;
 });
 
 gerarNovaMultiplicacao();
