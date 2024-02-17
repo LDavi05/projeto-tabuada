@@ -1,9 +1,44 @@
 // defininição das variáveis globais
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
+let tempoRestante = 60;
+let intervalo;
+
+function iniciarTempo() {
+  intervalo = setInterval(() => {
+    tempoRestante--;
+    atualizarBarraDeTempo();
+    if (tempoRestante <= 0) {
+      clearInterval(intervalo);
+      exibirTelaFinal();
+    }
+  }, 1000);
+}
+
+function atualizarBarraDeTempo() {
+  const timeBar = document.querySelector(".index");
+  const porcentagem = (tempoRestante / 60) * 100;
+  timeBar.style.width = porcentagem + "%";
+}
+
+function exibirTelaFinal() {
+  const finalScreen = document.querySelector(".final_screen");
+  const totalAcertos = document.querySelector(".result-number.correct");
+  const totalErros = document.querySelector(".result-number.incorrect");
+  
+  totalAcertos.textContent = acertos;
+  totalErros.textContent = erros;
+  
+  finalScreen.classList.remove("hide");
+  
+  document.querySelector(".restart_btn").addEventListener("click", function () {
+    location.reload();
+  })
+}
 
 // iniciar o jogo
 document.querySelector(".start_btn").addEventListener("click", function() {
   document.querySelector(".home_screen").classList.add("hide_with_animation");
+  iniciarTempo();
 });
 
 // função para gerar uma multiplicação aleatória
