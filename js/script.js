@@ -100,4 +100,20 @@ for (i = 0; i < keys.length; i++) {
   })
 }
 
+// Captura de eventos do teclado de computador
+document.addEventListener("keydown", function(e) {
+  const key = e.key;
+  const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  const okKey = "Enter";
+  const delKey = "Backspace";
+  
+  if (numericKeys.includes(key)) {
+    document.querySelector(`.key[data-key="${key}"]`).click();
+  } else if (key === delKey) {
+    document.querySelector(".key-del").click();
+  } else if (key === okKey) {
+    document.querySelector(".key-enter").click();
+  }
+})
+
 gerarNovaMultiplicacao();
