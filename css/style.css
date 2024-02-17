@@ -31,6 +31,9 @@ header a {
     text-align: center;
     gap: 4px;
 }
+header a .bx {
+    font-size: 2rem;
+}
 .hide {
     display: none !important;
 }
@@ -117,7 +120,7 @@ header a {
 }
 
 .key {
-    background: #fff;
+    background: #f8f8f8;
     border: 1px solid #d8d6d6;
     border-radius: 20px;
 }
@@ -148,7 +151,7 @@ header a {
     height: 70px;
 }
 .key-enter span{
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     position: absolute;
     left: 50%;
     top: 55%;
