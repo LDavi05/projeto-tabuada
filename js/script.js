@@ -2,6 +2,7 @@
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 let tempoRestante = 60;
 let intervalo;
+let teclaPressionada = false;
 
 function iniciarTempo() {
   intervalo = setInterval(() => {
@@ -101,8 +102,6 @@ for (i = 0; i < keys.length; i++) {
 }
 
 // Captura de eventos do teclado de computador
-let teclaPressionada = false;
-
 document.addEventListener("keydown", function(e) {
   const key = e.key;
   const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
