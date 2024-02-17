@@ -34,8 +34,19 @@ header a {
 header a .bx {
     font-size: 2rem;
 }
+.hide_with_animation {
+    left: -100% !important;
+    transition: all .2s ease;
+}
+.show_with_animation {
+    left: 0 !important;
+    transition: all .2s ease;
+}
 .hide {
     display: none !important;
+}
+.show {
+    display: block !important;
 }
 .container {
  /* */
@@ -179,6 +190,11 @@ button[disabled] {
     align-items: center;
     text-align: center;
     color: #9265ff;
+    transition: all .2s ease;
+}
+.multiplication_animation {
+    transform: scale(1.1) !important;
+    transition: all .2s ease;
 }
 .bar_area {
     padding: 1em;

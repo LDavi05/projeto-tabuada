@@ -3,7 +3,7 @@ let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 
 // iniciar o jogo
 document.querySelector(".start_btn").addEventListener("click", function() {
-  document.querySelector(".home_screen").classList.add("hide");
+  document.querySelector(".home_screen").classList.add("hide_with_animation");
 });
 
 // função para gerar uma multiplicação aleatória
@@ -21,6 +21,12 @@ function atualizarInterface() {
   document.getElementById("number_input").value = "";
   document.querySelector(".right span").textContent = acertos;
   document.querySelector(".wrong span").textContent = erros;
+
+  document.querySelector(".current_multiplication").classList.add("multiplication_animation")
+
+  setTimeout(() => {
+    document.querySelector(".current_multiplication").classList.remove("multiplication_animation")    
+  }, 200)
 }
 
 // evento para o botão OK pressionado
@@ -31,7 +37,7 @@ document.querySelector(".key-enter").addEventListener("click", function() {
   } else {
     erros++;
     }
-  
+    
   gerarNovaMultiplicacao();
   
   function reiniciar() {
