@@ -4,7 +4,7 @@ let tempoRestante;
 let intervalo;
 
 function iniciarTempo() {
-  tempoRestante = 100;
+  tempoRestante = 600;
   clearInterval(intervalo);
 
   intervalo = setInterval(() => {
