@@ -115,14 +115,22 @@ header a .bx {
     display: block;
     margin: 5px;
     width: 96%;
+    height: 70px;
     box-sizing: border-box;
     padding: 1.2em 0.3em 1.2em 0.3em;
-    font-size: 1em;
+    font-size: 1.23em;
     border-radius: 0.7em;
     outline: none;
     user-select: none;
     font-family: 'Fredoka', sans-serif;
     filter: drop-shadow(0px 7px 0px #e6e6e6);
+}
+
+.table-numeric button span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .table-numeric button:active {
@@ -144,11 +152,8 @@ header a .bx {
     height: 70px;
 }
 .key-del span{
-    font-size: 2rem;
-    position: absolute;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%);
+    font-size: 2rem !important;
+    top: 55% !important;
 }
 .key-del:is(:active, :focus) {
     background: #fb6164 !important;
@@ -162,11 +167,8 @@ header a .bx {
     height: 70px;
 }
 .key-enter span{
-    font-size: 2.3rem;
-    position: absolute;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%);
+    font-size: 2.3rem !important;
+    top: 55% !important;
 }
 .key-enter:is(:active, :focus){
     background: #8d5ff8 !important;
