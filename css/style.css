@@ -39,7 +39,7 @@ header a .bx {
     transition: all .2s ease;
 }
 .show_with_animation {
-    left: 0 !important;
+    right: 0 !important;
     transition: all .2s ease;
 }
 .hide {
@@ -211,6 +211,8 @@ button[disabled] {
     width: 100%;
     height: 20px;
     border-radius: 10px;
+    position: relative;
+    overflow: hidden;
 }
 .index {
     height: 100%;
@@ -218,6 +220,7 @@ button[disabled] {
     background-color: #9265ff;
     border-radius: 10px;
     display: flex;
+    object-fit: cover;
 }
 
 /* HomeScreen */
@@ -227,14 +230,20 @@ button[disabled] {
     background-color: #fff;
     width: 100%;
     height: 100%;  
-    position: absolute;
-    left: 0;
+    position: fixed;
     top: 80px;
     padding-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+.home_screen {
+    left: 0;
+}
+.final_screen {
+    right: -100%;
+    transition: all .2s ease;
 }
 .home_screen h3,
 .final_screen h3 {

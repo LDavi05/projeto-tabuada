@@ -1,9 +1,12 @@
 // defininição das variáveis globais
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
-let tempoRestante = 600;
+let tempoRestante;
 let intervalo;
 
 function iniciarTempo() {
+  tempoRestante = 100;
+  clearInterval(intervalo);
+
   intervalo = setInterval(() => {
     tempoRestante--;
     atualizarBarraDeTempo();
@@ -28,10 +31,16 @@ function exibirTelaFinal() {
   totalAcertos.textContent = acertos;
   totalErros.textContent = erros;
   
-  finalScreen.classList.remove("hide");
+  finalScreen.classList.add("show_with_animation");
   
   document.querySelector(".restart_btn").addEventListener("click", function () {
-    location.reload();
+    //location.reload();
+    acertos = 0;
+    erros = 0;
+    atualizarInterface()
+    gerarNovaMultiplicacao();
+    iniciarTempo();
+    finalScreen.classList.remove("show_with_animation");
   })
 }
 
@@ -105,6 +114,8 @@ document.addEventListener("keydown", function(e) {
   const key = e.key;
   const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const delKey = "Backspace";
+
+  console.log(key)
   
   if (numericKeys.includes(key)) {
     document.querySelector(`.key[data-key="${key}"]`).click();
