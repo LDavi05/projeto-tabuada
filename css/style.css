@@ -36,11 +36,11 @@ header a .bx {
 }
 .hide_with_animation {
     left: -100% !important;
-    transition: all .2s ease;
+    transition: all .3s ease;
 }
 .show_with_animation {
     right: 0 !important;
-    transition: all .2s ease;
+    transition: all .3s ease;
 }
 .hide {
     display: none !important;
@@ -245,7 +245,7 @@ button[disabled] {
 }
 .final_screen {
     right: -100%;
-    transition: all .2s ease;
+    transition: all .3s ease;
 }
 .home_screen h3,
 .final_screen h3 {
@@ -277,7 +277,7 @@ button[disabled] {
     font-family: "Fredoka", sans-serif !important;
     top: 10px;
     margin-top: 10rem;
-    filter: drop-shadow(0px 7px 0px #6942c2);
+    filter: drop-shadow(0px 7px 0px #6942c2) !important;
     cursor: pointer;
     align-items: center;
     vertical-align: middle;
@@ -286,8 +286,8 @@ button[disabled] {
 .start_btn:is(:active, :hover),
 .restart_btn:is(:active, :hover) {
     position: relative;
-    transform: translateY(0.8px);
-    filter: none;
+    transform: translateY(0.8px) !important;
+    filter: none !important;
 }
 
 /* Final Screen */
@@ -308,4 +308,39 @@ button[disabled] {
 }
 .result-text {
     font-size: 1.5rem;
+}
+
+@media (max-width: 800px) {
+    .hide_with_animation,
+    .show_with_animation,
+    .final_screen {
+        transition: all .2s ease;
+    }
+}
+
+@media (max-height: 680px) {
+    .table-numeric button {
+        height: 60px;
+    }  
+    .number_input {
+        padding: 8px;
+    }
+    .current_multiplication {
+        margin: 0 auto;
+        padding:0 !important;
+    }
+}
+
+@media (min-height: 866px) {
+    .current_multiplication  {
+        margin: 70px auto;
+        font-size: 4.2rem;
+    }   
+}
+
+@media (min-height: 988px) {
+    .current_multiplication  {
+        margin: 110px auto;
+        font-size: 4.3rem;
+    }   
 }
