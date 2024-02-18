@@ -286,7 +286,7 @@ button[disabled] {
 .start_btn:is(:active, :hover),
 .restart_btn:is(:active, :hover) {
     position: relative;
-    transform: translateY(0.8px) !important;
+    transform: translateY(0.8px);
     filter: none !important;
 }
 
