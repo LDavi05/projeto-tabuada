@@ -269,6 +269,7 @@ button[disabled] {
     position: absolute;
     top: 80%;
     color: #afafaf;
+    font-size: 1.2rem !important;
 }
 .credits a {
     text-decoration: none;
