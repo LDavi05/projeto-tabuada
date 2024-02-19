@@ -265,6 +265,19 @@ button[disabled] {
 .final_screen p {
     margin-top: 10px !important;
 }
+.credits{
+    position: absolute;
+    top: 80%;
+    color: #afafaf;
+}
+.credits a {
+    text-decoration: none;
+    color: #9365ffca;
+}
+.credits a:is(:hover, :active) {
+    color: #9265ff;
+    text-decoration: underline;
+}
 .start_btn,
 .restart_btn {
     padding: 1rem 3rem;
