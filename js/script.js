@@ -2,6 +2,7 @@
 let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 let tempoRestante;
 let intervalo;
+let multiplicacoesExibidas = new Set();
 
 function iniciarTempo() {
   tempoRestante = 600;
@@ -52,9 +53,20 @@ document.querySelector(".start_btn").addEventListener("click", function() {
 
 // função para gerar uma multiplicação aleatória
 function gerarNovaMultiplicacao() {
-  multiplicando = Math.floor(Math.random() * 8) + 2;
-  multiplicador = Math.floor(Math.random() * 9) + 1;
-  respostaCorreta = multiplicando * multiplicador;
+  let novaMultiplicacao = false;
+  while (!novaMultiplicacao) {
+    multiplicando = Math.floor(Math.random() * 8) + 2;
+    multiplicador = Math.floor(Math.random() * 9) + 1;
+    respostaCorreta = multiplicando * multiplicador;
+    
+    if (!multiplicacoesExibidas.has(`${multiplicando}-${multiplicador}`)) {
+      novaMultiplicacao = true;
+      multiplicacoesExibidas.add(`${multiplicando}-${multiplicador}`);
+      setTimeout(() => {
+        multiplicacoesExibidas.delete(`${multiplicando}-${multiplicador}`);
+      }, 10000)
+    }
+  }
   atualizarInterface();
 }
 
