@@ -114,10 +114,10 @@ header a .bx {
 
 .timeFinshed {
     background-color: black;
+    left: 100%;
+    top: 100%;
     position: absolute;
     opacity: 0.5;
-    display: flex;
-    text-align: center;
     justify-content: center;
 }
 
