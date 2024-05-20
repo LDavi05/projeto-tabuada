@@ -5,6 +5,12 @@ let intervalo;
 let multiplicacoesExibidas = new Set();
 let clickCooldown = false;
 
+if (localStorage.getItem("score") === null) {
+  localStorage.setItem("score", "0");
+}
+
+document.getElementById("homeBestScore").textContent = `Sua melhor pontuação: ${localStorage.getItem("score")}`
+
 function iniciarTempo() {
   tempoRestante = 600;
   clearInterval(intervalo);
@@ -14,7 +20,14 @@ function iniciarTempo() {
     atualizarBarraDeTempo();
     if (tempoRestante <= 0) {
       clearInterval(intervalo);
-      exibirTelaFinal();
+      exibirMensagemDeFinal();
+
+      let storedScore = parseInt(localStorage.getItem("score"), 10);
+      if (acertos > storedScore) {
+        localStorage.setItem("score", acertos.toString());
+      }
+
+      alert(localStorage.getItem("score"));
     }
   }, 100);
 }
@@ -25,13 +38,28 @@ function atualizarBarraDeTempo() {
   timeBar.style.width = porcentagem + "%";
 }
 
+function exibirMensagemDeFinal() {
+  const mensagemDiv = document.querySelector(".timeFinshed")
+
+  mensagemDiv.classList.remove("hideTimeFinished")
+
+  setTimeout(() => {
+    exibirTelaFinal()
+    setTimeout(() => {
+      mensagemDiv.classList.add("hideTimeFinished")
+    }, 1000)
+  }, 2000)
+}
+
 function exibirTelaFinal() {
   const finalScreen = document.querySelector(".final_screen");
   const totalAcertos = document.querySelector(".result-number.correct");
   const totalErros = document.querySelector(".result-number.incorrect");
+  const bestScore = document.getElementById("bestScore");
   
   totalAcertos.textContent = acertos;
   totalErros.textContent = erros;
+  bestScore.textContent = `Sua melhor pontuação: ${localStorage.getItem("score")}`
   
   finalScreen.classList.add("show_with_animation");
   

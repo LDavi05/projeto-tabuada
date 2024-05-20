@@ -1,132 +1,241 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Tabuada de Glécio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tabuada de Glécio - Jogo pra treinar tabuada" />
-    <meta property="og:url" content="https://ldavi05.github.io/projeto-tabuada/" />
-    <meta property="og:site_name" content="Tabuada de Glécio - Jogo pra treinar tabuada" />
-    <meta name="description" content="Teste seus conhecimentos e treine para não passar vergonha.">
-</head>
-<body>
+    <meta
+      property="og:title"
+      content="Tabuada de Glécio - Jogo pra treinar tabuada"
+    />
+    <meta
+      property="og:url"
+      content="https://ldavi05.github.io/projeto-tabuada/"
+    />
+    <meta
+      property="og:site_name"
+      content="Tabuada de Glécio - Jogo pra treinar tabuada"
+    />
+    <meta
+      name="description"
+      content="Teste seus conhecimentos e treine para não passar vergonha."
+    />
+  </head>
+  <body>
     <header>
-        <a href="./">
-            <i class='bx bx-math'></i>
-            Tabuada de Glécio
-        </a>
+      <a href="./">
+        <i class="bx bx-math"></i>
+        Tabuada de Glécio
+      </a>
     </header>
     <main class="container">
-
-        <div class="timeFinshed">
-            <p>Seu tempo acabou!</p>
+      <div class="timeFinshed hideTimeFinished">
+        <div>
+          <i class="bx bx-timer"></i>
+          <p>Seu tempo acabou!</p>
         </div>
+      </div>
 
-        <div class="bar_area">
-            <div class="speed_bar">
-                <span class="index"></span>
-            </div>
+      <div class="bar_area">
+        <div class="speed_bar">
+          <span class="index"></span>
         </div>
+      </div>
 
-        <section class="current_multiplication">
-            <span class="number number_1">
-                
-            </span>
-            <span>x</span>
-            <span class="number number_2">
-                
-            </span>
-        </section>
+      <section class="current_multiplication">
+        <span class="number number_1"> </span>
+        <span>x</span>
+        <span class="number number_2"> </span>
+      </section>
 
-
-        <div class="numpad_area">
-            <div class="score_mark">
-                <span class="right">
-                    <i class='bx bx-cool'></i>
-                    Acertos:
-                    <span></span>
-                </span>
-                <span class="wrong">
-                    <i class='bx bx-angry'></i>
-                    Erros:
-                    <span></span>
-                </span>
-            </div>
-            <div class="input-numeric-container">
-                <input type="number" class="number_input" id="number_input" readonly>
-                <table class="table-numeric">
-                    <tbody>
-                    <tr>
-                        <td><button type="button" class="key" data-key="1"><span>1</span></button></td>
-                        <td><button type="button" class="key" data-key="2"><span>2</span></button></td>
-                        <td><button type="button" class="key" data-key="3"><span>3</span></button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="key" data-key="4"><span>4</span></button></td>
-                        <td><button type="button" class="key" data-key="5"><span>5</span></button></td>
-                        <td><button type="button" class="key" data-key="6"><span>6</span></button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="key" data-key="7"><span>7</span></button></td>
-                        <td><button type="button" class="key" data-key="8"><span>8</span></button></td>
-                        <td><button type="button" class="key" data-key="9"><span>9</span></button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="key key-del" data-key="DEL"><span><i class='bx bxs-tag-x'></i></span></button></td>
-                        <td><button type="button" class="key" data-key="0"><span>0</span></button></td>
-                        <td><button type="button" class="key key-enter" data-key="OK"><span><i class='bx bx-subdirectory-left'></i></span></button></td>
-                    </tr>
-                </tbody>
-            </table>
+      <div class="numpad_area">
+        <div class="score_mark">
+          <span class="right">
+            <i class="bx bx-cool"></i>
+            Acertos:
+            <span></span>
+          </span>
+          <span class="wrong">
+            <i class="bx bx-angry"></i>
+            Erros:
+            <span></span>
+          </span>
         </div>
-    </div>  
+        <div class="input-numeric-container">
+          <input
+            type="number"
+            class="number_input"
+            id="number_input"
+            readonly
+          />
+          <table class="table-numeric">
+            <tbody>
+              <tr>
+                <td>
+                  <button type="button" class="key" data-key="1">
+                    <span>1</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="2">
+                    <span>2</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="3">
+                    <span>3</span>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="button" class="key" data-key="4">
+                    <span>4</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="5">
+                    <span>5</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="6">
+                    <span>6</span>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="button" class="key" data-key="7">
+                    <span>7</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="8">
+                    <span>8</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="9">
+                    <span>9</span>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="button" class="key key-del" data-key="DEL">
+                    <span><i class="bx bxs-tag-x"></i></span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key" data-key="0">
+                    <span>0</span>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="key key-enter" data-key="OK">
+                    <span><i class="bx bx-subdirectory-left"></i></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
-    
-    <section class="home_screen">
-        <h3>Jogo da tabuada de Glécio</h3>
-        <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
 
-        <button class="start_btn">
-            <i class='bx bxs-right-arrow' ></i>
-            Começar
-        </button>
-        
-        <span class="credits">Jogo criado por <a href="http://github.com/ldavi05" title="Siga Lucas Davi" target="_blank" rel="noopener noreferrer">Lucas Davi</a> e <a href="http://github.com/luizlealdev" title="Siga Luiz Leal" target="_blank" rel="noopener noreferrer">Luiz Leal</a></span>
+    <section class="home_screen">
+      <h3>Jogo da tabuada de Glécio</h3>
+      <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
+
+      <button class="start_btn">
+        <i class="bx bxs-right-arrow"></i>
+        Começar
+      </button>
+      <span class="bestScore homeBestScore" id="homeBestScore">
+        Sua melhor pontuação: 0
+      </span>
+
+      <span class="credits"
+        >Jogo criado por
+        <a
+          href="http://github.com/ldavi05"
+          title="Siga Lucas Davi"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Lucas Davi</a
+        >
+        e
+        <a
+          href="http://github.com/luizlealdev"
+          title="Siga Luiz Leal"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Luiz Leal</a
+        ></span
+      >
     </section>
-    
 
     <section class="final_screen">
-        <h3>O Tempo Acabou!</h3>
-        <p>Seu Resultado:</p>
+      <h3>O Tempo Acabou!</h3>
+      <p>Seu Resultado:</p>
 
-        <div class="results">
-            <div class="result right">
-                <span class="result-number correct"></span>
-                <span class="result-text">Acertos</span>
-            </div>
-            <div class="result wrong">
-                <span class="result-number incorrect"></span>
-                <span class="result-text">Erros</span>
-            </div>
+      <div class="results">
+        <div class="result right">
+          <span class="result-number correct"></span>
+          <span class="result-text">Acertos</span>
         </div>
+        <div class="result wrong">
+          <span class="result-number incorrect"></span>
+          <span class="result-text">Erros</span>
+        </div>
+      </div>
 
-        <button class="restart_btn">
-            <i class='bx bx-revision' ></i>
-            Reiniciar
-        </button>
+      <span class="bestScore" id="bestScore"> Sua melhor pontuação: 0 </span>
 
-        <p class="credits">Jogo criado por <a href="http://github.com/ldavi05" title="Siga Lucas Davi" target="_blank" rel="noopener noreferrer">Lucas Davi</a> e <a href="http://github.com/luizlealdev" title="Siga Luiz Leal" target="_blank" rel="noopener noreferrer">Luiz Leal</a></p>
+      <button class="restart_btn">
+        <i class="bx bx-revision"></i>
+        Reiniciar
+      </button>
+
+      <p class="credits">
+        Jogo criado por
+        <a
+          href="http://github.com/ldavi05"
+          title="Siga Lucas Davi"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Lucas Davi</a
+        >
+        e
+        <a
+          href="http://github.com/luizlealdev"
+          title="Siga Luiz Leal"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Luiz Leal</a
+        >
+      </p>
     </section>
-    
+
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>
