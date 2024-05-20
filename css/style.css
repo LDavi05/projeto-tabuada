@@ -112,6 +112,15 @@ header a .bx {
     border: 0;
 }
 
+.timeFinshed {
+    background-color: black;
+    position: absolute;
+    opacity: 0.5;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
 .table-numeric button {
     position: relative;
     cursor: pointer;
