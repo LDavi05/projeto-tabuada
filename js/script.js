@@ -3,6 +3,7 @@ let multiplicando, multiplicador, respostaCorreta, acertos = 0, erros = 0;
 let tempoRestante;
 let intervalo;
 let multiplicacoesExibidas = new Set();
+let clickCooldown = false;
 
 function iniciarTempo() {
   tempoRestante = 600;
@@ -86,7 +87,11 @@ function atualizarInterface() {
 }
 
 // evento para o botão OK pressionado
-document.querySelector(".key-enter").addEventListener("click", function() {
+document.querySelector(".key-enter").addEventListener("pointerdown", function() {
+  if (clickCooldown) return;
+  clickCooldown = true;
+  setTimeout( () => clickCooldown = false, 100);
+  
   let input = parseInt(document.getElementById("number_input").value);
   if (input === respostaCorreta) {
     acertos++;
@@ -107,7 +112,8 @@ document.querySelector(".key-enter").addEventListener("click", function() {
 const keys = document.querySelectorAll(".key");
 
 for (i = 0; i < keys.length; i++) {
-  keys[i].addEventListener("click", function() {
+  keys[i].addEventListener("pointerdown", function() {
+    
     let key = this.getAttribute("data-key");
     let input = document.getElementById("number_input");
     

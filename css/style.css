@@ -10,6 +10,11 @@ body {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
 }
+
+html, body {
+  touch-action: manipulation;
+}
+
 header {
     background-color: #f6f6f6;
     height: 80px;
