@@ -23,6 +23,8 @@ header {
 	padding: 0 20px;
 	display: flex;
 	z-index: 10;
+    display: flex;
+    justify-content: space-between;
 }
 
 header a {
@@ -63,7 +65,63 @@ header a .bx {
 
 .container {
 }
-
+.signIn_screen {
+    display: none;
+}
+.signIn_screen form {
+    width: 350px;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.25rem;
+}
+.signIn_screen h3 {
+    padding: 0 2rem 0 2rem;
+}
+.signIn_screen form div {
+    display: flex;
+    flex-direction: column;
+}
+.signIn_screen form div label, .avatar_selector p {
+    text-align: start;
+    color: #afafaf;
+    margin-bottom: 3px;
+}
+.signIn_input  {
+    font-family: 'Fredoka', sans-serif;
+	border-radius: 10px;
+	padding: 12px;
+	outline: none;
+    width: 100%;
+	margin-bottom: 7px;
+	border: 2px solid #b49af1;
+	font-size: 1em;
+    color: #6c6c6c;
+}
+.signIn_input:is(:focus, :active) {
+    border: 2px solid #9265ff;
+}
+.signIn_input::placeholder {
+    color: #afafaf;
+}
+.button_save {
+    margin-top: 1rem !important;
+}
+.avatar_selector .avatar_container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.avatar_container {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding-bottom: 8px;
+}
+.avatar_item img {
+    width: 80px;
+}
 .numpad_area {
 	position: absolute;
 	width: 100%;
@@ -289,7 +347,7 @@ button[disabled] {
 	object-fit: cover;
 }
 
-.home_screen, .final_screen {
+.home_screen, .final_screen, .signIn_screen {
 	background-color: #fff;
 	width: 100%;
 	height: 100%;
@@ -321,7 +379,7 @@ button[disabled] {
 	margin-top: 1.5rem;
 }
 
-.home_screen h3, .final_screen h3 {
+.home_screen h3, .final_screen h3, .signIn_screen h3 {
 	font-size: 2.3rem;
 	color: #9265ff;
 }
@@ -358,7 +416,7 @@ button[disabled] {
 	text-decoration: underline;
 }
 
-.start_btn, .restart_btn {
+.start_btn, .restart_btn, .button_save {
 	padding: 1rem 3rem;
 	background-color: #9265ff;
 	border: 2px solid #7e50ea;
@@ -375,7 +433,7 @@ button[disabled] {
 	vertical-align: middle;
 }
 
-.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover) {
+.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover) {
 	position: relative;
 	transform: translateY(0.8px);
 	filter: none !important;
@@ -433,6 +491,10 @@ button[disabled] {
 		margin: 70px auto;
 		font-size: 4.2rem;
 	}
+    .signIn_screen form {
+        width: 100%;
+        margin-top: 2rem;
+    }
 }
 
 @media (min-height: 988px) {
