@@ -26,8 +26,6 @@ function iniciarTempo() {
       if (acertos > storedScore) {
         localStorage.setItem("score", acertos.toString());
       }
-
-      alert(localStorage.getItem("score"));
     }
   }, 100);
 }
