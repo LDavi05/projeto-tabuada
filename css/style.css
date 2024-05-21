@@ -66,7 +66,7 @@ header a .bx {
 .container {
 }
 .signIn_screen {
-    display: none;
+    display: none !important;
 }
 .signIn_screen form {
     width: 350px;
