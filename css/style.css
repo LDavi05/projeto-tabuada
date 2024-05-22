@@ -64,7 +64,10 @@ header a .bx {
 }
 .signIn_screen {
     z-index: 50;
+    top: 0 !important;
+    padding-top: 3rem !important;
 }
+
 .signIn_screen form {
     width: 350px;
     margin-top: 2rem;
