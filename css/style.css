@@ -62,11 +62,8 @@ header a .bx {
 .show {
 	display: block !important;
 }
-
-.container {
-}
 .signIn_screen {
-    display: none !important;
+    z-index: 50;
 }
 .signIn_screen form {
     width: 350px;
@@ -98,6 +95,11 @@ header a .bx {
 	border: 2px solid #b49af1;
 	font-size: 1em;
     color: #6c6c6c;
+}
+.avatar_message {
+    font-size: 0.8rem;
+    color: #afafaf;
+    text-align: start;
 }
 .signIn_input:is(:focus, :active) {
     border: 2px solid #9265ff;

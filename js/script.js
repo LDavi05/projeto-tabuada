@@ -170,5 +170,31 @@ document.addEventListener("keydown", function(e) {
     document.querySelector(".key-enter").click();
   }
 });
-
 gerarNovaMultiplicacao();
+
+const signInScreen = document.querySelector(".signIn_screen")
+
+if (localStorage.getItem("username") === null) {
+  showSignInScreen()
+} else {
+  signInScreen.style.display = "none"
+}
+
+function showSignInScreen() {
+  const buttonSave = document.querySelector(".button_save")
+
+  buttonSave.addEventListener("click", () => {
+    const signInScreen = document.querySelector(".signIn_screen")
+    const inputName = document.getElementById("input_name").value
+    const inputClass = document.getElementById("input_class").value
+
+    if (inputName != null && inputName != '' && inputClass != null && inputClass != "") {
+      localStorage.setItem("username", inputName)
+      localStorage.setItem("userclass", inputClass)
+
+      signInScreen.classList.add("hide_with_animation")
+    } else {
+      alert("Preencha todos os campos")
+    }
+})
+}
