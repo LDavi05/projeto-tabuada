@@ -39,12 +39,12 @@ function atualizarBarraDeTempo() {
 function exibirMensagemDeFinal() {
   const mensagemDiv = document.querySelector(".timeFinshed")
 
-  mensagemDiv.classList.remove("hideTimeFinished")
+  mensagemDiv.classList.remove("hideTimeFinished");
 
   setTimeout(() => {
     exibirTelaFinal()
     setTimeout(() => {
-      mensagemDiv.classList.add("hideTimeFinished")
+      mensagemDiv.classList.add("hideTimeFinished");
     }, 1000)
   }, 2000)
 }
@@ -113,7 +113,7 @@ function atualizarInterface() {
 }
 
 // evento para o botão OK pressionado
-document.querySelector(".key-enter").addEventListener("pointerdown", function() {
+/*document.querySelector(".key-enter").addEventListener("click", function() {
   if (clickCooldown) return;
   clickCooldown = true;
   setTimeout( () => clickCooldown = false, 100);
@@ -123,7 +123,7 @@ document.querySelector(".key-enter").addEventListener("pointerdown", function() 
     acertos++;
   } else {
     erros++;
-    }
+  }
     
   gerarNovaMultiplicacao();
   
@@ -132,7 +132,13 @@ document.querySelector(".key-enter").addEventListener("pointerdown", function() 
     erros = 0;
     gerarNovaMultiplicacao();
   }
-});
+});*/
+
+function reiniciar() {
+  acertos = 0;
+  erros = 0;
+  gerarNovaMultiplicacao();
+}
 
 // Teclado funcionando
 const keys = document.querySelectorAll(".key");
@@ -146,7 +152,18 @@ for (i = 0; i < keys.length; i++) {
     if (key == "DEL") {
       input.value = input.value.slice(0, -1);
     } else if (key == "OK") {
-      return;
+      if (clickCooldown) return;
+  clickCooldown = true;
+  setTimeout( () => clickCooldown = false, 100);
+  
+  let input = parseInt(document.getElementById("number_input").value);
+  if (input === respostaCorreta) {
+    acertos++;
+  } else {
+    erros++;
+  }
+    
+  gerarNovaMultiplicacao();
     } else {
       input.value += key;
     }
@@ -158,16 +175,28 @@ document.addEventListener("keydown", function(e) {
   const key = e.key;
   const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const delKey = "Backspace";
+  const enter = "Enter";
+  let input = document.getElementById("number_input");
 
   console.log(key)
   
-  if (numericKeys.includes(key)) {
-    document.querySelector(`.key[data-key="${key}"]`).click();
-  } else if (key === delKey) {
-    document.querySelector(".key-del").click();
-  } else if (key === "Enter") {
-    e.preventDefault();
-    document.querySelector(".key-enter").click();
+  if (key == delKey) {
+    input.value = input.value.slice(0, -1);
+  } else if (key == enter) {
+    if (clickCooldown) return;
+      clickCooldown = true;
+      setTimeout( () => clickCooldown = false, 100);
+  
+  let input = parseInt(document.getElementById("number_input").value);
+  if (input === respostaCorreta) {
+    acertos++;
+  } else {
+    erros++;
+  }
+    
+  gerarNovaMultiplicacao();
+  } else {
+    input.value += key;
   }
 });
 gerarNovaMultiplicacao();
