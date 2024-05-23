@@ -694,16 +694,16 @@
   if (clickCooldown) return;
   clickCooldown = true;
   setTimeout( () => clickCooldown = false, 100);
-  
+
   let input = parseInt(document.getElementById("number_input").value);
   if (input === respostaCorreta) {
     acertos++;
   } else {
     erros++;
   }
-    
+
   gerarNovaMultiplicacao();
-  
+
   function reiniciar() {
     acertos = 0;
     erros = 0;
@@ -730,7 +730,7 @@
           } else if (key == "OK") {
             if (clickCooldown) return;
             clickCooldown = true;
-            setTimeout(() => (clickCooldown = false), 100);
+            setTimeout(() => (clickCooldown = false), 250);
 
             let input = parseInt(document.getElementById("number_input").value);
             if (input === respostaCorreta) {
