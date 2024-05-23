@@ -163,9 +163,29 @@
       </div>
     </main>
 
-    <section class="signIn_screen">
+    <section class="signIn_screen hide">
       <h3>Informações de usuário</h3>
       <form>
+        <div class="username_div">
+          <label for="input_name">Nome:</label>
+          <input
+            type="text"
+            id="input_name"
+            class="signIn_input"
+            maxlength="20"
+            placeholder="Digite seu nome ou apelido"
+          />
+        </div>
+        <div class="class_div">
+          <label for="input_class">Turma:</label>
+          <input
+            type="text"
+            id="input_class"
+            class="signIn_input"
+            maxlength="20"
+            placeholder="Digite qual é a sua turma"
+          />
+        </div>
         <div class="avatar_selector">
           <p>Escolha seu avatar:</p>
           <div class="avatar_container">
@@ -174,6 +194,10 @@
                 src="./img/avatars/avatar-1.png"
                 alt="Avatar"
                 id="avatar-img-1"
+              />
+              <img
+                src="./img/avatars/selected-indicator.png"
+                class="avatar_selected_indicator"
               />
             </div>
             <div class="avatar_item" id="avatar-2">
@@ -389,24 +413,6 @@
           </div>
           <span class="avatar_message">Role para os lados para ver mais</span>
         </div>
-        <div class="username_div">
-          <label for="input_name">Nome:</label>
-          <input
-            type="text"
-            id="input_name"
-            class="signIn_input"
-            placeholder="Digite seu nome ou apelido"
-          />
-        </div>
-        <div class="class_div">
-          <label for="input_class">Turma:</label>
-          <input
-            type="text"
-            id="input_class"
-            class="signIn_input"
-            placeholder="Digite qual é a sua turma"
-          />
-        </div>
         <span class="button_save">Salvar</span>
       </form>
     </section>
@@ -485,6 +491,483 @@
       </p>
     </section>
 
-    <script src="./js/script.js"></script>
+    <div class="overlay"></div>
+
+    <div class="leaderboard_window">
+      <div class="leaderboard_header">
+        <div>
+          <h4>Placar de pontos</h4>
+          <p>Veja quem se sai melhor na competição</p>
+        </div>
+        <i class="bx bx-x"></i>
+      </div>
+      <div class="table_container">
+        <table class="wp-table">
+          <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Turma</th>
+            <th>Pontos</th>
+          </tr>
+          <tr>
+            <td class="td_position">1</td>
+            <td class="td_username">
+              <img
+                src="./img/avatars/avatar-15.png"
+                class="user_avatar"
+                alt="Avatar"
+              />
+              Lucas Davi asdnsdsfdfs
+            </td>
+            <td class="td_class">Informática 3</td>
+            <td class="td_score">42</td>
+          </tr>
+          <tr>
+            <td class="td_position">1</td>
+            <td class="td_username">
+              <img
+                src="./img/avatars/avatar-10.png"
+                class="user_avatar"
+                alt="Avatar"
+              />
+              Lucas
+            </td>
+            <td class="td_class">Informática 3</td>
+            <td class="td_score">42</td>
+          </tr>
+          <tr>
+            <td class="td_position">1</td>
+            <td class="td_username">
+              <img
+                src="./img/avatars/avatar-5.png"
+                class="user_avatar"
+                alt="Avatar"
+              />
+              Lucas Davi
+            </td>
+            <td class="td_class">Informática 3</td>
+            <td class="td_score">42</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script type="module">
+      // defininição das variáveis globais
+      let multiplicando,
+        multiplicador,
+        respostaCorreta,
+        acertos = 0,
+        erros = 0;
+      let tempoRestante;
+      let intervalo;
+      let multiplicacoesExibidas = new Set();
+      let clickCooldown = false;
+
+      if (localStorage.getItem("score") === null) {
+        localStorage.setItem("score", "0");
+      }
+      document.getElementById(
+        "homeBestScore"
+      ).textContent = `Sua melhor pontuação: ${localStorage.getItem("score")}`;
+
+      function iniciarTempo() {
+        tempoRestante = 600;
+        clearInterval(intervalo);
+
+        intervalo = setInterval(() => {
+          tempoRestante--;
+          atualizarBarraDeTempo();
+          if (tempoRestante <= 0) {
+            clearInterval(intervalo);
+            exibirMensagemDeFinal();
+
+            let storedScore = parseInt(localStorage.getItem("score"), 10);
+            if (acertos > storedScore) {
+              localStorage.setItem("score", acertos.toString());
+              addToLeaderBoard();
+            }
+          }
+        }, 100);
+      }
+
+      function atualizarBarraDeTempo() {
+        const timeBar = document.querySelector(".index");
+        const porcentagem = (tempoRestante / 600) * 100;
+        timeBar.style.width = porcentagem + "%";
+      }
+
+      function exibirMensagemDeFinal() {
+        const mensagemDiv = document.querySelector(".timeFinshed");
+
+        mensagemDiv.classList.remove("hideTimeFinished");
+
+        setTimeout(() => {
+          exibirTelaFinal();
+          setTimeout(() => {
+            mensagemDiv.classList.add("hideTimeFinished");
+          }, 1000);
+        }, 2000);
+      }
+
+      function exibirTelaFinal() {
+        const finalScreen = document.querySelector(".final_screen");
+        const totalAcertos = document.querySelector(".result-number.correct");
+        const totalErros = document.querySelector(".result-number.incorrect");
+        const bestScore = document.getElementById("bestScore");
+
+        totalAcertos.textContent = acertos;
+        totalErros.textContent = erros;
+        bestScore.textContent = `Sua melhor pontuação: ${localStorage.getItem(
+          "score"
+        )}`;
+
+        finalScreen.classList.add("show_with_animation");
+
+        document
+          .querySelector(".restart_btn")
+          .addEventListener("click", function () {
+            //location.reload();
+            acertos = 0;
+            erros = 0;
+            atualizarInterface();
+            gerarNovaMultiplicacao();
+            iniciarTempo();
+            finalScreen.classList.remove("show_with_animation");
+          });
+      }
+
+      // iniciar o jogo
+      document
+        .querySelector(".start_btn")
+        .addEventListener("click", function () {
+          document
+            .querySelector(".home_screen")
+            .classList.add("hide_with_animation");
+          iniciarTempo();
+        });
+
+      // função para gerar uma multiplicação aleatória
+      function gerarNovaMultiplicacao() {
+        let novaMultiplicacao = false;
+        while (!novaMultiplicacao) {
+          multiplicando = Math.floor(Math.random() * 8) + 2;
+          multiplicador = Math.floor(Math.random() * 9) + 1;
+          respostaCorreta = multiplicando * multiplicador;
+
+          if (
+            !multiplicacoesExibidas.has(`${multiplicando}-${multiplicador}`)
+          ) {
+            novaMultiplicacao = true;
+            multiplicacoesExibidas.add(`${multiplicando}-${multiplicador}`);
+            setTimeout(() => {
+              multiplicacoesExibidas.delete(
+                `${multiplicando}-${multiplicador}`
+              );
+            }, 10000);
+          }
+        }
+        atualizarInterface();
+      }
+
+      // função para atualizar a interface com a nova multiplicação
+      function atualizarInterface() {
+        document.querySelector(".number_1").textContent = multiplicando;
+        document.querySelector(".number_2").textContent = multiplicador;
+        document.getElementById("number_input").value = "";
+        document.querySelector(".right span").textContent = acertos;
+        document.querySelector(".wrong span").textContent = erros;
+
+        document
+          .querySelector(".current_multiplication")
+          .classList.add("multiplication_animation");
+
+        setTimeout(() => {
+          document
+            .querySelector(".current_multiplication")
+            .classList.remove("multiplication_animation");
+        }, 200);
+      }
+
+      // evento para o botão OK pressionado
+      /*document.querySelector(".key-enter").addEventListener("click", function() {
+  if (clickCooldown) return;
+  clickCooldown = true;
+  setTimeout( () => clickCooldown = false, 100);
+  
+  let input = parseInt(document.getElementById("number_input").value);
+  if (input === respostaCorreta) {
+    acertos++;
+  } else {
+    erros++;
+  }
+    
+  gerarNovaMultiplicacao();
+  
+  function reiniciar() {
+    acertos = 0;
+    erros = 0;
+    gerarNovaMultiplicacao();
+  }
+});*/
+
+      function reiniciar() {
+        acertos = 0;
+        erros = 0;
+        gerarNovaMultiplicacao();
+      }
+
+      // Teclado funcionando
+      const keys = document.querySelectorAll(".key");
+
+      for (let i = 0; i < keys.length; i++) {
+        keys[i].addEventListener("pointerdown", function () {
+          let key = this.getAttribute("data-key");
+          let input = document.getElementById("number_input");
+
+          if (key == "DEL") {
+            input.value = input.value.slice(0, -1);
+          } else if (key == "OK") {
+            if (clickCooldown) return;
+            clickCooldown = true;
+            setTimeout(() => (clickCooldown = false), 100);
+
+            let input = parseInt(document.getElementById("number_input").value);
+            if (input === respostaCorreta) {
+              acertos++;
+            } else {
+              erros++;
+            }
+
+            gerarNovaMultiplicacao();
+          } else {
+            input.value += key;
+          }
+        });
+      }
+
+      // Captura de eventos do teclado de computador
+      document.addEventListener("keydown", function (e) {
+        const key = e.key;
+        const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        const delKey = "Backspace";
+        const enter = "Enter";
+        let input = document.getElementById("number_input");
+
+        console.log(key);
+
+        if (key == delKey) {
+          input.value = input.value.slice(0, -1);
+        } else if (key == enter) {
+          if (clickCooldown) return;
+          clickCooldown = true;
+          setTimeout(() => (clickCooldown = false), 100);
+
+          let input = parseInt(document.getElementById("number_input").value);
+          if (input === respostaCorreta) {
+            acertos++;
+          } else {
+            erros++;
+          }
+
+          gerarNovaMultiplicacao();
+        } else {
+          input.value += key;
+        }
+      });
+      gerarNovaMultiplicacao();
+
+      const signInScreen = document.querySelector(".signIn_screen");
+
+      if (localStorage.getItem("username") === null) {
+        showSignInScreen();
+        signInScreen.classList.add("show_flex");
+      } else {
+        signInScreen.style.display = "none";
+      }
+
+      function showSignInScreen() {
+        const buttonSave = document.querySelector(".button_save");
+
+        buttonSave.addEventListener("click", () => {
+          const signInScreen = document.querySelector(".signIn_screen");
+          const inputName = document.getElementById("input_name").value;
+          const inputClass = document.getElementById("input_class").value;
+
+          if (
+            inputName != null &&
+            inputName != "" &&
+            inputClass != null &&
+            inputClass != ""
+          ) {
+            localStorage.setItem("username", inputName);
+            localStorage.setItem("userclass", inputClass);
+            localStorage.setItem("userId", generateId());
+
+            signInScreen.classList.add("hide_with_animation");
+          } else {
+            alert("Preencha todos os campos");
+          }
+        });
+      }
+
+      function generateId() {
+        const characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let id = "";
+        for (let i = 0; i < 14; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          id += characters.charAt(randomIndex);
+        }
+        return id;
+      }
+
+      const avatarItem = document.querySelectorAll(".avatar_item");
+
+      avatarItem.forEach((item) => {
+        item.addEventListener("click", () => {
+          const selectedIndicator = document.querySelector(
+            ".avatar_selected_indicator"
+          );
+          selectedIndicator.parentNode.removeChild(selectedIndicator);
+
+          item.appendChild(selectedIndicator);
+
+          avatarId = selectedIndicator.parentNode.id;
+          localStorage.setItem("avatarId", avatarId);
+        });
+      });
+
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js";
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBZaYOCSFC-KVaJreVNUXNjs4haShrSM38",
+        authDomain: "tabuada-glecio.firebaseapp.com",
+        databaseURL: "https://tabuada-glecio-default-rtdb.firebaseio.com",
+        projectId: "tabuada-glecio",
+        storageBucket: "tabuada-glecio.appspot.com",
+        messagingSenderId: "1010790211554",
+        appId: "1:1010790211554:web:fa49e02bff19c19006a3bb",
+        measurementId: "G-SN1T3QVT49",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      import {
+        getDatabase,
+        ref,
+        child,
+        get,
+        set,
+        update,
+        query,
+        orderByChild,
+        limitToFirst,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
+
+      const db = getDatabase();
+
+      /*const dbRef = ref(db);
+        get(child(dbRef, "leaderboard/"))
+          .then((snapshot) => {
+            console.log(snapshot);
+          })
+          .catch((e) => {
+            console.error(e);
+          });*/
+
+      function addToLeaderBoard() {
+        set(ref(db, "leaderboard/" + localStorage.getItem("userId")), {
+          username: localStorage.getItem("username"),
+          class: localStorage.getItem("userclass"),
+          avatarId: localStorage.getItem("avatarId"),
+          score: localStorage.getItem("score"),
+        }).catch((e) => {
+          console.error(e);
+        });
+      }
+
+      async function getTopLeaderboardEntries() {
+        const dbRef = ref(db, "leaderboard");
+        const leaderboardQuery = query(
+          dbRef,
+          orderByChild("score"),
+          limitToFirst(50)
+        );
+
+        try {
+          const snapshot = await get(leaderboardQuery);
+          if (snapshot.exists()) {
+            const leaderboardEntries = [];
+            snapshot.forEach((childSnapshot) => {
+              const data = childSnapshot.val();
+              leaderboardEntries.push({
+                username: data.username,
+                class: data.class,
+                avatarId: data.avatarId,
+                score: data.score,
+              });
+            });
+
+            // Store values in variables
+            const usernames = leaderboardEntries.map((entry) => entry.username);
+            const classes = leaderboardEntries.map((entry) => entry.class);
+            const avatarIds = leaderboardEntries.map((entry) => entry.avatarId);
+            const scores = leaderboardEntries.map((entry) => entry.score);
+
+            console.log("Usernames:", usernames);
+            console.log("Classes:", classes);
+            console.log("Avatar IDs:", avatarIds);
+            console.log("Scores:", scores);
+
+            updateLeaderBoard(leaderboardEntries);
+          } else {
+            console.log("No data available");
+          }
+        } catch (error) {
+          console.error("Error getting leaderboard entries:", error);
+        }
+      }
+      getTopLeaderboardEntries();
+
+      function updateLeaderBoard(entries) {
+        const table = document.querySelector(".wp-table");
+
+        table.innerHTML =
+          `<tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Turma</th>
+            <th>Pontos</th>
+          </tr>` +
+          entries
+            .map(
+              (entry) => `<tr>
+            <td class="td_position">1</td>
+            <td class="td_username">
+              <img
+                src="./img/avatars/${entry.avatarId}.png"
+                class="user_avatar"
+                alt="Avatar"
+              />
+              ${entry.username}
+            </td>
+            <td class="td_class"> ${entry.class}</td>
+            <td class="td_score"> ${entry.score}</td>
+          </tr>`
+            )
+            .join("");
+      }
+    </script>
   </body>
 </html>

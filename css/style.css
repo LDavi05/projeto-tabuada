@@ -62,6 +62,9 @@ header a .bx {
 .show {
 	display: block !important;
 }
+.show_flex {
+	display: flex !important;
+}
 .signIn_screen {
     z-index: 50;
     top: 0 !important;
@@ -117,6 +120,12 @@ header a .bx {
     display: flex;
     flex-direction: row;
     gap: 5px;
+}
+.avatar_item {
+	position: relative;
+}
+.avatar_selected_indicator {
+	position: absolute;
 }
 .avatar_container {
     max-width: 100%;
@@ -469,7 +478,115 @@ button[disabled] {
 .result-text {
 	font-size: 1.5rem;
 }
+.leaderboard_window {
+	display: none !important;
+	z-index: 1000;
+	position: fixed;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	height: 430px;
+	width: 500px;
+}
+.leaderboard_header {
+	padding: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.leaderboard_header .bx {
+	font-size: 2.2rem;
+	cursor: pointer;
+	color: #6c6c6c;
+}
+.leaderboard_header div h4 {
+	font-size: 2rem;
+	color: #9265ff;
+}
+.leaderboard_header div p {
+	color:#afafaf;
+}
+.table_container {
+	overflow: scroll;
+	white-space: nowrap;
+}
+.wp-table tr:nth-child(odd) {
+	background-color: #fff;
+  }
+  
+  .wp-table tr:nth-child(even) {
+	background-color: #f1f1f1;
+  }
+  
+  .wp-table tr {
+	border-bottom: 1px solid #ddd;
+  }
+  
+  .wp-table th:first-child, 
+  .wp-table td:first-child {
+	padding-left: 16px;
+  }
+  .wp-table td {
+	display: inline-flex;
+  align-items: center;
+	flex-direction: row;
+	vertical-align: middle !important;
+  }
+  .wp-table th {
+	color: #afafaf;
+  }
+  .td_score {
+color: #9265ff;
+font-size: 1.5rem;
+  }
+  .td_username, .td_class, .td_position {
+	color: #6c6c6c;
+  }
+  .wp-table td, 
+  .wp-table th {
+	padding: 8px 8px;
+	display: table-cell;
+	text-align: left;
+	vertical-align: top;
+  }
+  .wp-table tr td:nth-child(1) {
+	padding-top: 1rem;
+  }
+  
+  .wp-table th {
+	font-weight: bold;
+  }
 
+  .user_avatar {
+	width: 45px;
+	vertical-align: middle;
+  }
+   
+  .wp-table {
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	display: table;
+	overflow-x:scroll ;
+	overflow-y: scroll;
+	white-space: nowrap;
+  }
+.overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+	opacity: 0.7;
+	display: none;
+}
 @media (max-width: 800px) {
 	.hide_with_animation, .show_with_animation, .final_screen {
 		transition: all .2s ease;
@@ -496,10 +613,6 @@ button[disabled] {
 		margin: 70px auto;
 		font-size: 4.2rem;
 	}
-    .signIn_screen form {
-        width: 100%;
-        margin-top: 2rem;
-    }
 }
 
 @media (min-height: 988px) {

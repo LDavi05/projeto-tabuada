@@ -8,7 +8,6 @@ let clickCooldown = false;
 if (localStorage.getItem("score") === null) {
   localStorage.setItem("score", "0");
 }
-
 document.getElementById("homeBestScore").textContent = `Sua melhor pontuação: ${localStorage.getItem("score")}`
 
 function iniciarTempo() {
@@ -205,6 +204,7 @@ const signInScreen = document.querySelector(".signIn_screen")
 
 if (localStorage.getItem("username") === null) {
   showSignInScreen()
+  signInScreen.classList.add("show_flex")
 } else {
   signInScreen.style.display = "none"
 }
@@ -220,10 +220,36 @@ function showSignInScreen() {
     if (inputName != null && inputName != '' && inputClass != null && inputClass != "") {
       localStorage.setItem("username", inputName)
       localStorage.setItem("userclass", inputClass)
+      localStorage.setItem("userId", generateId())
 
       signInScreen.classList.add("hide_with_animation")
+      addToLeaderBoard()
     } else {
       alert("Preencha todos os campos")
     }
 })
 }
+
+function generateId() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let id = '';
+  for (let i = 0; i < 14; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      id += characters.charAt(randomIndex);
+  }
+  return id;
+}
+
+const avatarItem = document.querySelectorAll(".avatar_item")
+
+avatarItem.forEach(item => {
+  item.addEventListener("click", () => {
+    const selectedIndicator = document.querySelector(".avatar_selected_indicator")
+    selectedIndicator.parentNode.removeChild(selectedIndicator)
+
+    item.appendChild(selectedIndicator)
+
+    avatarId = selectedIndicator.parentNode.id
+    localStorage.setItem("avatarId", avatarId)
+  })
+})
