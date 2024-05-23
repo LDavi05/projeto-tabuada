@@ -426,7 +426,7 @@
         Começar
       </button>
       <span class="bestScore homeBestScore" id="homeBestScore">
-        Sua melhor pontuação: 0
+        Sua maior pontuação: 0
       </span>
 
       <span class="credits"
@@ -464,12 +464,18 @@
         </div>
       </div>
 
-      <span class="bestScore" id="bestScore"> Sua melhor pontuação: 0 </span>
+      <span class="bestScore" id="bestScore"> Sua maior pontuação: 0 </span>
 
-      <button class="restart_btn">
-        <i class="bx bx-revision"></i>
-        Reiniciar
-      </button>
+      <div class="restart_actions_buttons">
+        <button class="restart_btn">
+          <i class="bx bx-revision"></i>
+          Reiniciar
+        </button>
+        <button class="view_leaderboard_btn">
+          <i class="bx bx-trophy"></i>
+          Ver Placar
+        </button>
+      </div>
 
       <p class="credits">
         Jogo criado por
@@ -493,7 +499,7 @@
 
     <div class="overlay"></div>
 
-    <div class="leaderboard_window">
+    <div class="leaderboard_window fade">
       <div class="leaderboard_header">
         <div>
           <h4>Placar de pontos</h4>
@@ -517,7 +523,7 @@
                 class="user_avatar"
                 alt="Avatar"
               />
-              Lucas Davi asdnsdsfdfs
+              Lucas Davi
             </td>
             <td class="td_class">Informática 3</td>
             <td class="td_score">42</td>
@@ -569,10 +575,10 @@
       }
       document.getElementById(
         "homeBestScore"
-      ).textContent = `Sua melhor pontuação: ${localStorage.getItem("score")}`;
+      ).textContent = `Sua maior pontuação: ${localStorage.getItem("score")}`;
 
       function iniciarTempo() {
-        tempoRestante = 600;
+        tempoRestante = 30;
         clearInterval(intervalo);
 
         intervalo = setInterval(() => {
@@ -618,7 +624,7 @@
 
         totalAcertos.textContent = acertos;
         totalErros.textContent = erros;
-        bestScore.textContent = `Sua melhor pontuação: ${localStorage.getItem(
+        bestScore.textContent = `Sua maior pontuação: ${localStorage.getItem(
           "score"
         )}`;
 
@@ -635,6 +641,11 @@
             iniciarTempo();
             finalScreen.classList.remove("show_with_animation");
           });
+
+          document.querySelector('.view_leaderboard_btn').addEventListener("click", () => {
+            document.querySelector('.leaderboard_window').classList.add('show_leaderboard');
+            document.querySelector('.overlay').classList.add('show')
+          })
       }
 
       // iniciar o jogo
@@ -761,7 +772,7 @@
         } else if (key == enter) {
           if (clickCooldown) return;
           clickCooldown = true;
-          setTimeout(() => (clickCooldown = false), 100);
+          setTimeout(() => (clickCooldown = false), 250);
 
           let input = parseInt(document.getElementById("number_input").value);
           if (input === respostaCorreta) {

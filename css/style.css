@@ -446,8 +446,27 @@ button[disabled] {
 	align-items: center;
 	vertical-align: middle;
 }
+.view_leaderboard_btn {
+	padding: 1rem 3rem;
+	background: #fcfcfc;
+	border: 2px solid #d9d9d9;
+	color: #9265ff;
+	font-size: 1.4rem;
+	border-radius: 12px;
+	font-family: "Fredoka", sans-serif !important;
+	top: 10px;
+	margin-top: 1rem;
+	filter: drop-shadow(0px 7px 0px #888888) !important;
+	cursor: pointer;
+	align-items: center;
+	vertical-align: middle;
+}
 
-.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover) {
+.restart_actions_buttons {
+	display: flex;
+	flex-direction: column;
+}
+.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover), .view_leaderboard_btn:is(:active, :hover) {
 	position: relative;
 	transform: translateY(0.8px);
 	filter: none !important;
@@ -479,7 +498,6 @@ button[disabled] {
 	font-size: 1.5rem;
 }
 .leaderboard_window {
-	display: none !important;
 	z-index: 1000;
 	position: fixed;
 	background-color: white;
@@ -487,10 +505,12 @@ button[disabled] {
 	flex-direction: column;
 	border-radius: 10px;
 	left: 50%;
+	height: 60vh;
 	top: 50%;
+	opacity: 0;
 	transform: translate(-50%,-50%);
-	height: 430px;
 	width: 500px;
+	pointer-events: none;
 }
 .leaderboard_header {
 	padding: 1rem;
@@ -517,16 +537,16 @@ button[disabled] {
 .wp-table tr:nth-child(odd) {
 	background-color: #fff;
   }
-  
+
   .wp-table tr:nth-child(even) {
 	background-color: #f1f1f1;
   }
-  
+
   .wp-table tr {
 	border-bottom: 1px solid #ddd;
   }
-  
-  .wp-table th:first-child, 
+
+  .wp-table th:first-child,
   .wp-table td:first-child {
 	padding-left: 16px;
   }
@@ -546,7 +566,7 @@ font-size: 1.5rem;
   .td_username, .td_class, .td_position {
 	color: #6c6c6c;
   }
-  .wp-table td, 
+  .wp-table td,
   .wp-table th {
 	padding: 8px 8px;
 	display: table-cell;
@@ -556,7 +576,7 @@ font-size: 1.5rem;
   .wp-table tr td:nth-child(1) {
 	padding-top: 1rem;
   }
-  
+
   .wp-table th {
 	font-weight: bold;
   }
@@ -565,7 +585,7 @@ font-size: 1.5rem;
 	width: 45px;
 	vertical-align: middle;
   }
-   
+
   .wp-table {
 	font-size: 1.2rem;
 	border: 1px solid #ccc;
@@ -585,7 +605,17 @@ font-size: 1.5rem;
 	height: 100vh;
 	background-color: #000;
 	opacity: 0.7;
+	pointer-events: none !important;
 	display: none;
+}
+.overlay.show {
+	display: block;
+	pointer-events: auto;
+}
+.show_leaderboard{
+	opacity: 1;
+	pointer-events: auto;
+	transition: all .2s ease-in-out;
 }
 @media (max-width: 800px) {
 	.hide_with_animation, .show_with_animation, .final_screen {
