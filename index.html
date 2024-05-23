@@ -421,10 +421,16 @@
       <h3>Jogo da tabuada de Glécio</h3>
       <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
 
-      <button class="start_btn">
-        <i class="bx bxs-right-arrow"></i>
-        Começar
-      </button>
+      <div class="group_actions_buttons">
+        <button class="start_btn">
+          <i class="bx bxs-right-arrow"></i>
+          Começar
+        </button>
+        <button class="view_leaderboard_btn">
+          <i class="bx bx-trophy"></i>
+          Ver Placar
+        </button>
+      </div>
       <span class="bestScore homeBestScore" id="homeBestScore">
         Sua maior pontuação: 0
       </span>
@@ -466,7 +472,7 @@
 
       <span class="bestScore" id="bestScore"> Sua maior pontuação: 0 </span>
 
-      <div class="restart_actions_buttons">
+      <div class="group_actions_buttons">
         <button class="restart_btn">
           <i class="bx bx-revision"></i>
           Reiniciar
@@ -505,7 +511,7 @@
           <h4>Placar de pontos</h4>
           <p>Veja quem se sai melhor na competição</p>
         </div>
-        <i class="bx bx-x"></i>
+        <i class="bx bx-x btn_close_leaderboard"></i>
       </div>
       <div class="table_container">
         <table class="wp-table">
@@ -523,7 +529,7 @@
                 class="user_avatar"
                 alt="Avatar"
               />
-              Lucas Davi
+              Lucas Daviadfdbf
             </td>
             <td class="td_class">Informática 3</td>
             <td class="td_score">42</td>
@@ -578,7 +584,7 @@
       ).textContent = `Sua maior pontuação: ${localStorage.getItem("score")}`;
 
       function iniciarTempo() {
-        tempoRestante = 600;
+        tempoRestante = 30;
         clearInterval(intervalo);
 
         intervalo = setInterval(() => {
@@ -641,11 +647,6 @@
             iniciarTempo();
             finalScreen.classList.remove("show_with_animation");
           });
-
-          document.querySelector('.view_leaderboard_btn').addEventListener("click", () => {
-            document.querySelector('.leaderboard_window').classList.add('show_leaderboard');
-            document.querySelector('.overlay').classList.add('show')
-          })
       }
 
       // iniciar o jogo
@@ -721,6 +722,28 @@
     gerarNovaMultiplicacao();
   }
 });*/
+
+      const leaderBoardBtns = document.querySelectorAll(
+        ".view_leaderboard_btn"
+      );
+
+      leaderBoardBtns.forEach((button) => {
+        button.addEventListener("click", () => {
+          document
+            .querySelector(".leaderboard_window")
+            .classList.add("show_leaderboard");
+          document.querySelector(".overlay").classList.add("show");
+        });
+      });
+
+      document
+        .querySelector(".btn_close_leaderboard")
+        .addEventListener("click", () => {
+          document
+            .querySelector(".leaderboard_window")
+            .classList.remove("show_leaderboard");
+          document.querySelector(".overlay").classList.remove("show");
+        });
 
       function reiniciar() {
         acertos = 0;
@@ -811,8 +834,8 @@
             inputClass != null &&
             inputClass != ""
           ) {
-            localStorage.setItem("username", inputName);
-            localStorage.setItem("userclass", inputClass);
+            localStorage.setItem("username", inputName.trim());
+            localStorage.setItem("userclass", inputClass.trim());
             localStorage.setItem("userId", generateId());
 
             signInScreen.classList.add("hide_with_animation");
@@ -844,8 +867,9 @@
 
           item.appendChild(selectedIndicator);
 
-          avatarId = selectedIndicator.parentNode.id;
+          let avatarId = selectedIndicator.parentNode.id;
           localStorage.setItem("avatarId", avatarId);
+          console.log(localStorage.getItem("avatarId"));
         });
       });
 
@@ -930,6 +954,8 @@
               });
             });
 
+            leaderboardEntries.sort((a, b) => b.score - a.score);
+
             // Store values in variables
             const usernames = leaderboardEntries.map((entry) => entry.username);
             const classes = leaderboardEntries.map((entry) => entry.class);
@@ -963,8 +989,8 @@
           </tr>` +
           entries
             .map(
-              (entry) => `<tr>
-            <td class="td_position">1</td>
+              (entry, i) => `<tr>
+            <td class="td_position">${i + 1}</td>
             <td class="td_username">
               <img
                 src="./img/avatars/${entry.avatarId}.png"

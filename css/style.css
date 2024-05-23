@@ -367,7 +367,7 @@ button[disabled] {
 	height: 100%;
 	position: fixed;
 	top: 80px;
-	padding-top: 5rem;
+	padding-top: 2.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -446,23 +446,26 @@ button[disabled] {
 	align-items: center;
 	vertical-align: middle;
 }
+.start_btn {
+	margin-top: 6rem !important;
+}
 .view_leaderboard_btn {
 	padding: 1rem 3rem;
 	background: #fcfcfc;
-	border: 2px solid #d9d9d9;
+	border: 2px solid #d1d1d1;
 	color: #9265ff;
 	font-size: 1.4rem;
 	border-radius: 12px;
 	font-family: "Fredoka", sans-serif !important;
 	top: 10px;
 	margin-top: 1rem;
-	filter: drop-shadow(0px 7px 0px #888888) !important;
+	filter: drop-shadow(0px 7px 0px #a3a3a3) !important;
 	cursor: pointer;
 	align-items: center;
 	vertical-align: middle;
 }
 
-.restart_actions_buttons {
+.group_actions_buttons {
 	display: flex;
 	flex-direction: column;
 }
@@ -473,7 +476,7 @@ button[disabled] {
 }
 
 .restart_btn {
-	margin-top: 8rem !important;
+	margin-top: 3rem !important;
 }
 
 .results {
@@ -511,6 +514,7 @@ button[disabled] {
 	transform: translate(-50%,-50%);
 	width: 500px;
 	pointer-events: none;
+	transition: all .2s ease-in-out;
 }
 .leaderboard_header {
 	padding: 1rem;
@@ -522,6 +526,7 @@ button[disabled] {
 	font-size: 2.2rem;
 	cursor: pointer;
 	color: #6c6c6c;
+	padding: 5px;
 }
 .leaderboard_header div h4 {
 	font-size: 2rem;
@@ -531,7 +536,8 @@ button[disabled] {
 	color:#afafaf;
 }
 .table_container {
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: scroll;
 	white-space: nowrap;
 }
 .wp-table tr:nth-child(odd) {
@@ -555,9 +561,14 @@ button[disabled] {
   align-items: center;
 	flex-direction: row;
 	vertical-align: middle !important;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
   }
   .wp-table th {
 	color: #afafaf;
+	text-align: center;
   }
   .td_score {
 color: #9265ff;
@@ -580,6 +591,9 @@ font-size: 1.5rem;
   .wp-table th {
 	font-weight: bold;
   }
+  .th_position {
+	width: 10% !important;
+  }
 
   .user_avatar {
 	width: 45px;
@@ -593,9 +607,6 @@ font-size: 1.5rem;
 	border-spacing: 0;
 	width: 100%;
 	display: table;
-	overflow-x:scroll ;
-	overflow-y: scroll;
-	white-space: nowrap;
   }
 .overlay {
 	position: fixed;
@@ -623,6 +634,14 @@ font-size: 1.5rem;
 	}
 }
 
+@media (max-width: 680px) {
+	.leaderboard_window {
+		width: 80vw;
+		height: 80vh;
+		margin-left: 0.1rem;
+	}
+}
+
 @media (max-height: 680px) {
 	.table-numeric button {
 		height: 60px;
@@ -635,6 +654,9 @@ font-size: 1.5rem;
 	.current_multiplication {
 		margin: 0 auto;
 		padding: 0 !important;
+	}
+	.start_btn {
+		margin-top: 3rem !important;
 	}
 }
 
