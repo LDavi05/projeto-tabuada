@@ -514,53 +514,7 @@
         <i class="bx bx-x btn_close_leaderboard"></i>
       </div>
       <div class="table_container">
-        <table class="wp-table">
-          <tr>
-            <th>Posição</th>
-            <th>Nome</th>
-            <th>Turma</th>
-            <th>Pontos</th>
-          </tr>
-          <tr>
-            <td class="td_position">1</td>
-            <td class="td_username">
-              <img
-                src="./img/avatars/avatar-15.png"
-                class="user_avatar"
-                alt="Avatar"
-              />
-              Lucas Daviadfdbf
-            </td>
-            <td class="td_class">Informática 3</td>
-            <td class="td_score">42</td>
-          </tr>
-          <tr>
-            <td class="td_position">1</td>
-            <td class="td_username">
-              <img
-                src="./img/avatars/avatar-10.png"
-                class="user_avatar"
-                alt="Avatar"
-              />
-              Lucas
-            </td>
-            <td class="td_class">Informática 3</td>
-            <td class="td_score">42</td>
-          </tr>
-          <tr>
-            <td class="td_position">1</td>
-            <td class="td_username">
-              <img
-                src="./img/avatars/avatar-5.png"
-                class="user_avatar"
-                alt="Avatar"
-              />
-              Lucas Davi
-            </td>
-            <td class="td_class">Informática 3</td>
-            <td class="td_score">42</td>
-          </tr>
-        </table>
+        <table class="wp-table"></table>
       </div>
     </div>
 
@@ -729,6 +683,7 @@
 
       leaderBoardBtns.forEach((button) => {
         button.addEventListener("click", () => {
+          getTopLeaderboardEntries();
           document
             .querySelector(".leaderboard_window")
             .classList.add("show_leaderboard");
@@ -975,10 +930,12 @@
           console.error("Error getting leaderboard entries:", error);
         }
       }
-      getTopLeaderboardEntries();
 
       function updateLeaderBoard(entries) {
         const table = document.querySelector(".wp-table");
+
+        let avatarId =
+          entries.avatarId === undefined ? "avatar-1" : entries.avatarId;
 
         table.innerHTML =
           `<tr>
@@ -993,7 +950,10 @@
             <td class="td_position">${i + 1}</td>
             <td class="td_username">
               <img
-                src="./img/avatars/${entry.avatarId}.png"
+                src="./img/avatars/${(avatarId =
+                  entry.avatarId === undefined
+                    ? "avatar-1"
+                    : entry.avatarId)}.png"
                 class="user_avatar"
                 alt="Avatar"
               />
