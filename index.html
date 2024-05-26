@@ -45,7 +45,7 @@
         <i class="bx bx-math"></i>
         Tabuada de Glécio
       </a>
-      <!--i class="bx bx-user-circle"></i-->
+      <i class="bx bx-user-circle"></i>
     </header>
     <main class="container">
       <div class="timeFinshed hideTimeFinished">
@@ -514,7 +514,13 @@
         <i class="bx bx-x btn_close_leaderboard"></i>
       </div>
       <div class="table_container">
-        <table class="wp-table"></table>
+        <table class="wp-table">
+          <img
+            id="leaderboard_loading_gif"
+            src="https://media.tenor.com/cJTSvduh3UwAAAAi/superhirn-mathematics.gif"
+            alt="Carregando..."
+          />
+        </table>
       </div>
     </div>
 
@@ -657,25 +663,25 @@
 
       // evento para o botão OK pressionado
       /*document.querySelector(".key-enter").addEventListener("click", function() {
-  if (clickCooldown) return;
-  clickCooldown = true;
-  setTimeout( () => clickCooldown = false, 100);
+        if (clickCooldown) return;
+        clickCooldown = true;
+        setTimeout( () => clickCooldown = false, 100);
 
-  let input = parseInt(document.getElementById("number_input").value);
-  if (input === respostaCorreta) {
-    acertos++;
-  } else {
-    erros++;
-  }
+        let input = parseInt(document.getElementById("number_input").value);
+        if (input === respostaCorreta) {
+          acertos++;
+        } else {
+          erros++;
+        }
 
-  gerarNovaMultiplicacao();
+        gerarNovaMultiplicacao();
 
-  function reiniciar() {
-    acertos = 0;
-    erros = 0;
-    gerarNovaMultiplicacao();
-  }
-});*/
+        function reiniciar() {
+          acertos = 0;
+          erros = 0;
+          gerarNovaMultiplicacao();
+        }
+      });*/
 
       const leaderBoardBtns = document.querySelectorAll(
         ".view_leaderboard_btn"
@@ -709,8 +715,8 @@
       // Teclado funcionando
       const keys = document.querySelectorAll(".key");
 
-      for (let i = 0; i < keys.length; i++) {
-        keys[i].addEventListener("pointerdown", function () {
+      keys.forEach((keyElement) => {
+        keyElement.addEventListener("pointerdown", function () {
           let key = this.getAttribute("data-key");
           let input = document.getElementById("number_input");
 
@@ -721,8 +727,8 @@
             clickCooldown = true;
             setTimeout(() => (clickCooldown = false), 250);
 
-            let input = parseInt(document.getElementById("number_input").value);
-            if (input === respostaCorreta) {
+            let inputVal = parseInt(input.value);
+            if (inputVal === respostaCorreta) {
               acertos++;
             } else {
               erros++;
@@ -733,7 +739,7 @@
             input.value += key;
           }
         });
-      }
+      });
 
       // Captura de eventos do teclado de computador
       document.addEventListener("keydown", function (e) {
@@ -752,15 +758,15 @@
           clickCooldown = true;
           setTimeout(() => (clickCooldown = false), 250);
 
-          let input = parseInt(document.getElementById("number_input").value);
-          if (input === respostaCorreta) {
+          let inputVal = parseInt(input.value);
+          if (inputVal === respostaCorreta) {
             acertos++;
           } else {
             erros++;
           }
 
           gerarNovaMultiplicacao();
-        } else {
+        } else if (numericKeys.includes(key)) {
           input.value += key;
         }
       });
@@ -772,26 +778,42 @@
         showSignInScreen();
         signInScreen.classList.add("show_flex");
       } else {
-        signInScreen.style.display = "none";
+        signInScreen.classList.add("hide");
       }
+
+      document
+        .querySelector(".bx-user-circle")
+        .addEventListener("click", () => {
+          signInScreen.classList.remove("hide_with_animation");
+          signInScreen.classList.remove("hide");
+
+          document.getElementById("input_name").value =
+            localStorage.getItem("username");
+          document.getElementById("input_class").value =
+            localStorage.getItem("userclass");
+          showSignInScreen();
+        });
 
       function showSignInScreen() {
         const buttonSave = document.querySelector(".button_save");
 
-        buttonSave.addEventListener("click", () => {
-          const signInScreen = document.querySelector(".signIn_screen");
+        // Remove existing event listeners to prevent multiple bindings
+        const newButtonSave = buttonSave.cloneNode(true);
+        buttonSave.parentNode.replaceChild(newButtonSave, buttonSave);
+
+        newButtonSave.addEventListener("click", () => {
           const inputName = document.getElementById("input_name").value;
           const inputClass = document.getElementById("input_class").value;
 
-          if (
-            inputName != null &&
-            inputName != "" &&
-            inputClass != null &&
-            inputClass != ""
-          ) {
+          if (inputName && inputClass) {
             localStorage.setItem("username", inputName.trim());
             localStorage.setItem("userclass", inputClass.trim());
-            localStorage.setItem("userId", generateId());
+            localStorage.setItem(
+              "userId",
+              localStorage.getItem("userId") != null
+                ? localStorage.getItem("userId")
+                : generateId()
+            );
 
             signInScreen.classList.add("hide_with_animation");
           } else {
@@ -868,20 +890,20 @@
       const db = getDatabase();
 
       /*const dbRef = ref(db);
-        get(child(dbRef, "leaderboard/"))
-          .then((snapshot) => {
-            console.log(snapshot);
-          })
-          .catch((e) => {
-            console.error(e);
-          });*/
+              get(child(dbRef, "leaderboard/"))
+                .then((snapshot) => {
+                  console.log(snapshot);
+                })
+                .catch((e) => {
+                  console.error(e);
+                });*/
 
       function addToLeaderBoard() {
         set(ref(db, "leaderboard/" + localStorage.getItem("userId")), {
           username: localStorage.getItem("username"),
           class: localStorage.getItem("userclass"),
           avatarId: localStorage.getItem("avatarId"),
-          score: localStorage.getItem("score"),
+          score: acertos,
         }).catch((e) => {
           console.error(e);
         });
@@ -923,6 +945,8 @@
             console.log("Scores:", scores);
 
             updateLeaderBoard(leaderboardEntries);
+            document.getElementById("leaderboard_loading_gif").style.display =
+              "none";
           } else {
             console.log("No data available");
           }
@@ -939,29 +963,29 @@
 
         table.innerHTML =
           `<tr>
-            <th>Posição</th>
-            <th>Nome</th>
-            <th>Turma</th>
-            <th>Pontos</th>
-          </tr>` +
+                  <th>Posição</th>
+                  <th>Nome</th>
+                  <th>Turma</th>
+                  <th>Pontos</th>
+                </tr>` +
           entries
             .map(
               (entry, i) => `<tr>
-            <td class="td_position">${i + 1}</td>
-            <td class="td_username">
-              <img
-                src="./img/avatars/${(avatarId =
-                  entry.avatarId === undefined
-                    ? "avatar-1"
-                    : entry.avatarId)}.png"
-                class="user_avatar"
-                alt="Avatar"
-              />
-              ${entry.username}
-            </td>
-            <td class="td_class"> ${entry.class}</td>
-            <td class="td_score"> ${entry.score}</td>
-          </tr>`
+                  <td class="td_position">${i + 1}</td>
+                  <td class="td_username">
+                    <img
+                      src="./img/avatars/${(avatarId =
+                        entry.avatarId === undefined
+                          ? "avatar-1"
+                          : entry.avatarId)}.png"
+                      class="user_avatar"
+                      alt="Avatar"
+                    />
+                    ${entry.username}
+                  </td>
+                  <td class="td_class"> ${entry.class}</td>
+                  <td class="td_score"> ${entry.score}</td>
+                </tr>`
             )
             .join("");
       }

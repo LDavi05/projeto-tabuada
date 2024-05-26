@@ -44,6 +44,13 @@ header a {
 header a .bx {
 	font-size: 2rem;
 }
+.bx-user-circle {
+	font-size: 2rem;
+	color: #9265ff;
+	display: flex;
+	align-self: center;
+	cursor: pointer;
+}
 
 .hide_with_animation {
 	left: -100% !important;
@@ -521,6 +528,14 @@ button[disabled] {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+#leaderboard_loading_gif {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .leaderboard_header .bx {
 	font-size: 2.2rem;
