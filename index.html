@@ -554,10 +554,7 @@
             clearInterval(intervalo);
             exibirMensagemDeFinal();
 
-            let storedScore = parseInt(localStorage.getItem("score"), 10);
-            if (acertos > storedScore) {
-              localStorage.setItem("score", acertos.toString());
-              addToLeaderBoard();
+            addToLeaderBoard();
             }
           }
         }, 100);
