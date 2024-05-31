@@ -750,6 +750,7 @@
         if (key == delKey) {
           input.value = input.value.slice(0, -1);
         } else if (key == enter) {
+          e.preventDefault();
           if (clickCooldown) return;
           clickCooldown = true;
           setTimeout(() => (clickCooldown = false), 250);
