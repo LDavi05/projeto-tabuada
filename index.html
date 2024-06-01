@@ -898,7 +898,7 @@
       function addToLeaderBoard() {
         set(ref(db, "leaderboard/" + localStorage.getItem("userId")), {
           username: localStorage.getItem("username"),
-          class: localStorage.getItem("userclass"),
+          userClass: localStorage.getItem("userclass"),
           avatarId: localStorage.getItem("avatarId"),
           score: acertos,
         }).catch((e) => {
@@ -922,7 +922,7 @@
               const data = childSnapshot.val();
               leaderboardEntries.push({
                 username: data.username,
-                class: data.class,
+                userClass: data.userClass,
                 avatarId: data.avatarId,
                 score: data.score,
               });
@@ -932,7 +932,7 @@
 
             // Store values in variables
             const usernames = leaderboardEntries.map((entry) => entry.username);
-            const classes = leaderboardEntries.map((entry) => entry.class);
+            const classes = leaderboardEntries.map((entry) => entry.userClass);
             const avatarIds = leaderboardEntries.map((entry) => entry.avatarId);
             const scores = leaderboardEntries.map((entry) => entry.score);
 
@@ -980,7 +980,7 @@
                     />
                     ${entry.username}
                   </td>
-                  <td class="td_class"> ${entry.class}</td>
+                  <td class="td_class"> ${entry.userClass}</td>
                   <td class="td_score"> ${entry.score}</td>
                 </tr>`
             )
