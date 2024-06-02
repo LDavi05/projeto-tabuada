@@ -544,7 +544,7 @@
       ).textContent = `Sua maior pontuação: ${localStorage.getItem("score")}`;
 
       function iniciarTempo() {
-        tempoRestante = 600;
+        tempoRestante = 10;
         clearInterval(intervalo);
 
         intervalo = setInterval(() => {
@@ -896,10 +896,17 @@
                 });*/
 
       function addToLeaderBoard() {
+        let avatarId;
+        if (localStorage.getItem("avatarId") === null) {
+          avatarId = "avatar-1";
+        } else {
+          localStorage.getItem("avatarId");
+        }
+
         set(ref(db, "leaderboard/" + localStorage.getItem("userId")), {
           username: localStorage.getItem("username"),
           userClass: localStorage.getItem("userclass"),
-          avatarId: localStorage.getItem("avatarId"),
+          avatarId: avatarId,
           score: acertos,
         }).catch((e) => {
           console.error(e);
