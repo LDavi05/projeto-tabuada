@@ -900,17 +900,26 @@
         if (localStorage.getItem("avatarId") === null) {
           avatarId = "avatar-1";
         } else {
-          localStorage.getItem("avatarId");
+          avatarId = localStorage.getItem("avatarId");
         }
 
-        set(ref(db, "leaderboard/" + localStorage.getItem("userId")), {
-          username: localStorage.getItem("username"),
-          userClass: localStorage.getItem("userclass"),
-          avatarId: avatarId,
-          score: acertos,
-        }).catch((e) => {
-          console.error(e);
-        });
+        const userId = localStorage.getItem("userId");
+        const username = localStorage.getItem("username");
+        const userClass = localStorage.getItem("userclass");
+        const score = acertos;
+
+        if (userId && username && userClass && score !== undefined) {
+          set(ref(db, "leaderboard/" + userId), {
+            username: username,
+            userClass: userClass,
+            avatarId: avatarId,
+            score: score,
+          }).catch((e) => {
+            console.error(e);
+          });
+        } else {
+          console.error("Missing user information or score");
+        }
       }
 
       async function getTopLeaderboardEntries() {
@@ -929,10 +938,9 @@
               const data = childSnapshot.val();
               leaderboardEntries.push({
                 username: data.username,
-                userClass: data.userClass,
+                class: data.userClass,
                 avatarId: data.avatarId,
                 score: data.score,
-                platform: "Web/Normal",
               });
             });
 
@@ -940,7 +948,7 @@
 
             // Store values in variables
             const usernames = leaderboardEntries.map((entry) => entry.username);
-            const classes = leaderboardEntries.map((entry) => entry.userClass);
+            const classes = leaderboardEntries.map((entry) => entry.class);
             const avatarIds = leaderboardEntries.map((entry) => entry.avatarId);
             const scores = leaderboardEntries.map((entry) => entry.score);
 
@@ -988,7 +996,7 @@
                     />
                     ${entry.username}
                   </td>
-                  <td class="td_class"> ${entry.userClass}</td>
+                  <td class="td_class"> ${entry.class}</td>
                   <td class="td_score"> ${entry.score}</td>
                 </tr>`
             )
