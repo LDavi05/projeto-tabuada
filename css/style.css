@@ -456,7 +456,7 @@ button[disabled] {
 .start_btn {
 	margin-top: 6rem !important;
 }
-.view_leaderboard_btn {
+.view_leaderboard_btn,  .button_download {
 	padding: 1rem 3rem;
 	background: #fcfcfc;
 	border: 2px solid #d1d1d1;
@@ -476,7 +476,7 @@ button[disabled] {
 	display: flex;
 	flex-direction: column;
 }
-.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover), .view_leaderboard_btn:is(:active, :hover) {
+.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover), .view_leaderboard_btn:is(:active, :hover), .button_download:is(:active, :hover)  {
 	position: relative;
 	transform: translateY(0.8px);
 	filter: none !important;
@@ -643,9 +643,44 @@ font-size: 1.5rem;
 	pointer-events: auto;
 	transition: all .2s ease-in-out;
 }
+.content {
+	max-width: 550px;
+}
+.download_container, .how_to_download {
+	display: grid;
+	margin-top: 2rem;
+	place-items: center;
+}
+.how_to_download {
+	margin-top: 4.5rem !important;
+}
+.download_container a {
+	text-decoration: none
+}
+.information_area {
+	margin-top: 2rem;
+}
+.information_area p {
+	color: #afafaf;
+	margin-bottom: 0.5rem;
+	font-size: 1.25rem 
+}
+.download_container h2, .how_to_download h2 {
+	font-size: 2rem;
+	color: #9265ff;
+	margin-bottom: 2rem;
+}
+.preview_image {
+	max-width: 100%;
+	margin-bottom: 2rem;
+}
 @media (max-width: 800px) {
 	.hide_with_animation, .show_with_animation, .final_screen {
 		transition: all .2s ease;
+	}
+	.content {
+		max-width: 100%;
+		padding: 0 1rem 0 1rem;
 	}
 }
 
@@ -656,6 +691,7 @@ font-size: 1.5rem;
 		margin-left: 0.1rem;
 	}
 }
+
 
 @media (max-height: 680px) {
 	.table-numeric button {
