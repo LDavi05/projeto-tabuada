@@ -670,6 +670,13 @@ font-size: 1.5rem;
 	color: #9265ff;
 	margin-bottom: 2rem;
 }
+.button_download {
+	max-width: 250px;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
 .preview_image {
 	max-width: 100%;
 	margin-bottom: 2rem;
@@ -679,8 +686,8 @@ font-size: 1.5rem;
 		transition: all .2s ease;
 	}
 	.content {
-		max-width: 90%;
-		padding: 0 0.2rem 0 0.2rem;
+		max-width: 100%;
+		padding: 0 1rem 0 1rem;
 	}
 }
 
