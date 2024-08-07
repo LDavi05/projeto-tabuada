@@ -456,7 +456,7 @@ button[disabled] {
 .start_btn {
 	margin-top: 6rem !important;
 }
-.view_leaderboard_btn,  .button_download {
+.view_leaderboard_btn,  .button_download, .reset_leaderboard_btn {
 	padding: 1rem 3rem;
 	background: #fcfcfc;
 	border: 2px solid #d1d1d1;
@@ -476,7 +476,7 @@ button[disabled] {
 	display: flex;
 	flex-direction: column;
 }
-.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover), .view_leaderboard_btn:is(:active, :hover), .button_download:is(:active, :hover)  {
+.start_btn:is(:active, :hover), .restart_btn:is(:active, :hover), .button_save:is(:active, :hover), .view_leaderboard_btn:is(:active, :hover), .button_download:is(:active, :hover), .reset_leaderboard_btn:is(:active, :hover)   {
 	position: relative;
 	transform: translateY(0.8px);
 	filter: none !important;
