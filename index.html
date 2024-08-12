@@ -924,11 +924,7 @@
 
       async function getTopLeaderboardEntries() {
         const dbRef = ref(db, "leaderboard");
-        const leaderboardQuery = query(
-          dbRef,
-          orderByChild("score"),
-          limitToFirst(50)
-        );
+        const leaderboardQuery = query(dbRef, orderByChild("score"));
 
         try {
           const snapshot = await get(leaderboardQuery);
@@ -945,18 +941,6 @@
             });
 
             leaderboardEntries.sort((a, b) => b.score - a.score);
-
-            // Store values in variables
-            const usernames = leaderboardEntries.map((entry) => entry.username);
-            const classes = leaderboardEntries.map((entry) => entry.class);
-            const avatarIds = leaderboardEntries.map((entry) => entry.avatarId);
-            const scores = leaderboardEntries.map((entry) => entry.score);
-
-            console.log("Usernames:", usernames);
-            console.log("Classes:", classes);
-            console.log("Avatar IDs:", avatarIds);
-            console.log("Scores:", scores);
-
             updateLeaderBoard(leaderboardEntries);
             document.getElementById("leaderboard_loading_gif").style.display =
               "none";
