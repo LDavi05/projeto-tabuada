@@ -554,7 +554,12 @@
             clearInterval(intervalo);
             exibirMensagemDeFinal();
 
-            addToLeaderBoard();
+            addToLeaderBoard("leaderboard/");
+
+            if (acertos > parseInt(localStorage.getItem("score"))) {
+              localStorage.setItem("score", acertos)              
+              addToLeaderBoard("leaderboard_global/");
+            }
           }
         }, 100);
       }
@@ -895,7 +900,7 @@
                   console.error(e);
                 });*/
 
-      function addToLeaderBoard() {
+      function addToLeaderBoard(path) {
         let avatarId;
         if (localStorage.getItem("avatarId") === null) {
           avatarId = "avatar-1";
@@ -909,7 +914,7 @@
         const score = acertos;
 
         if (userId && username && userClass && score !== undefined) {
-          set(ref(db, "leaderboard/" + userId), {
+          set(ref(db, path + userId), {
             username: username,
             userClass: userClass,
             avatarId: avatarId,
