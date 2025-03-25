@@ -1,996 +1,1170 @@
 <!DOCTYPE html>
+<!--
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣷⣄⠀⠀⠀⣀⣤⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⠏⠀⠀⣿⠀⢀⡾⠛⠋⠀⣾⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⡏⠀⠀⠀⣿⢀⣾⠁⠀⣰⠆⢹⡿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⣧⠀⠀⢠⡟⢸⡇⠀⣰⠟⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣹⣆⢀⣸⣇⣸⠃⢠⡏⠀⣸⠋⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣴⣶⣶⣶⠾⠟⠛⠉⠉⠉⠈⠉⠉⠛⠁⢾⠁⣴⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣶⣶⠾⠟⠛⠛⣻⣿⣙⡁⠀⠀⢾⣶⣾⣷⣿⣶⣄⠀⠀⠀⠀⠰⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣴⣶⣶⠾⠟⠛⠉⠉⠉⠀⠀⠀⠀⠀⣿⣻⣟⣻⣿⡦⠀⠘⣿⣿⣛⡿⢶⡇⠀⠀⠀⠀⠀⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⣠⣶⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡟⠙⣿⣿⡗⠀⠀⠿⠉⣿⣿⣿⣶⠀⠀⠀⠀⠀⠀⠈⢿⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠳⣄⣿⡿⠁⠀⠀⠘⢦⣿⣿⠇⠟⠁⠀⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⡇⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣇⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀
+⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢤⣤⡀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⠙⢿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡾⠟⠛⠆⠀⠀⠀⠀⠀⢀⢻⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠙⠿⣿⣭⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⠾⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣾⠇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠷⠶⢶⣶⣦⣤⣴⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣌⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⣤⣴⣾⣿⣿⣿⣓⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣷⣦⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣤⣶⣾⣟⣯⣽⠟⠋⠀⠉⠳⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⢇⠀⠉⠛⠷⣮⣍⣩⡍⢻⡟⠉⣉⢹⡏⠉⣿⣹⣷⣦⣿⠿⠟⠉⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠏⢸⠇⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⢠⣠⡶⠀⠀⠀⠀⠘⣧⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡿⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠟⠁⠀⠀⠀⠀⠀⠘⣆⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠃⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣇⡀⠀⠀⠀⠀⠀⠀⢹⡆⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣾⠀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣥⢠⣤⠼⠇⠀⠀⠘⣿⡄
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣽⡄⠈⢿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠿⠾⠷⠄⠀⠀⠀⢀⣿⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠸⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣾⠋⠀⠀⠀⠀⠀⠀⢰⣾⡿⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣦⣠⣿⣿⣶⣶⣤⣤⣄⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣿⣇⠀⠀⠀⠀⠀⠀⠀⣸⡟⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⠀⠉⠛⢿⣿⣯⣿⡟⢿⠻⣿⢻⣿⢿⣿⣿⣿⣿⣿⠿⠟⠹⣟⢷⣄⠀⠀⠀⢀⣼⠟⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣄⠀⠀⠘⢷⣌⡻⠿⣿⣛⣿⣟⣛⣛⣋⣉⣉⣉⣀⡀⠀⠀⠈⠻⢿⣷⣶⣶⢛⣧⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣏⠀⠀⠀⠀⠹⢯⣟⣛⢿⣿⣽⣅⣀⡀⠀⣀⡀⠀⠀⠀⠠⢦⣀⠰⡦⠀⢸⠀⣏⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⠀⠀⠀⠀⠈⠉⢻⣿⡟⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠈⠛⠷⠀⣸⠀⣿⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⢿⠀⠀⢦⡀⡀⠀⠀⠀⠀⢹⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡄⡏⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⠈⠳⣝⠦⢄⠀⠀⠀⣟⣷⠀⠀⠀⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⣷⡀⠀⠀⠈⠙⠂⠀⠀⠀⢸⣿⡄⠀⠀⠘⢦⡙⢦⡀⠀⠀⠀⠀⢰⣷⣷⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡿⢧⣤⣀⡀⠀⠀⠀⠀⠀⠀⢿⣷⣄⠀⠀⠀⠁⠋⠀⠀⠀⠀⠀⢸⣿⣿⣇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⡀⠈⠉⠛⠛⠛⠛⠛⠛⠛⠛⢿⡍⠛⠳⠶⣶⣤⣤⣤⣤⣤⣤⠼⠟⡟⢿⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣾⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣴⣿⣷⣶⣶⣶⣶⣶⣶⣦⣀⣀⣀⣻⡀⠀⠀⠀⣀⣀⠀⡀⠀⠀⠀⢀⣼⣿⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠟⠉⠁⠀⠀⠈⠻⣿⡆⢹⣯⣽⣿⣿⠟⠋⠙⣿⣶⣿⣿⣿⣿⣾⣿⣿⣿⣟⠋⠉⣇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⡀⠀⠀⠀⠈⢻⣆⣿⠀⠀⠀⢁⣶⣿⠿⠟⠛⠷⣶⣽⣿⣿⣻⣏⠙⠃⣴⢻⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⣀⠀⠀⠉⠀⠀⠀⠀⠀⢹⣿⠀⣀⣴⣿⠋⠀⠀⠀⠀⠀⠀⠉⠻⣿⣧⣿⢀⣰⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣶⣶⣤⣤⣤⣤⣤⣤⣾⣿⣟⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣅⣾⢿⣵⠇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠛⠛⠛⠛⠛⠛⠛⠉⠉⠉⠁⢹⣜⠷⠦⠤⠤⠤⠤⠤⠴⠶⠛⣉⣱⠿⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠿⠷⣦⣤⣤⣄⣠⣤⣤⡶⠟⠁⠀⠀⠀⠀⠀⠀
+
+
+██╗     ██╗   ██╗██╗███████╗    ██╗     ███████╗ █████╗ ██╗     
+██║     ██║   ██║██║╚══███╔╝    ██║     ██╔════╝██╔══██╗██║     
+██║     ██║   ██║██║  ███╔╝     ██║     █████╗  ███████║██║     
+██║     ██║   ██║██║ ███╔╝      ██║     ██╔══╝  ██╔══██║██║     
+███████╗╚██████╔╝██║███████╗    ███████╗███████╗██║  ██║███████╗
+╚══════╝ ╚═════╝ ╚═╝╚══════╝    ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
+
+-->
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
-    <title>Tabuada de Glécio</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Tabuada de Glécio - Jogo para treinar tabuada"
-    />
-    <meta
-      property="og:url"
-      content="https://ldavi05.github.io/projeto-tabuada/"
-    />
-    <meta
-      property="og:site_name"
-      content="Tabuada de Glécio - Jogo para treinar tabuada"
-    />
-    <meta
-      name="description"
-      content="Teste seus conhecimentos e treine para não passar vergonha."
-    />
-  </head>
-  <body>
-    <header>
-      <a href="./">
-        <i class="bx bx-math"></i>
-        Tabuada de Glécio
-      </a>
-      <i class="bx bx-user-circle"></i>
-    </header>
-    <main class="container">
-      <div class="timeFinshed hideTimeFinished">
-        <div>
-          <i class="bx bx-timer"></i>
-          <p>Seu tempo acabou!</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+        <title>Tabuada de Glécio</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Tabuada de Glécio - Jogo para treinar tabuada"
+        />
+        <meta
+            property="og:url"
+            content="https://ldavi05.github.io/projeto-tabuada/"
+        />
+        <meta
+            property="og:site_name"
+            content="Tabuada de Glécio - Jogo para treinar tabuada"
+        />
+        <meta
+            name="description"
+            content="Teste seus conhecimentos e treine para não passar vergonha."
+        />
+    </head>
+    <body>
+        <header>
+            <a href="./">
+                <i class="bx bx-math"></i>
+                Tabuada de Glécio
+            </a>
+            <i class="bx bx-user-circle"></i>
+        </header>
+        <main class="container">
+            <div class="timeFinshed hideTimeFinished">
+                <div>
+                    <i class="bx bx-timer"></i>
+                    <p>Seu tempo acabou!</p>
+                </div>
+            </div>
+
+            <div class="bar_area">
+                <div class="speed_bar">
+                    <span class="index"></span>
+                </div>
+            </div>
+
+            <section class="current_multiplication">
+                <span class="number number_1"> </span>
+                <span>x</span>
+                <span class="number number_2"> </span>
+            </section>
+
+            <div class="numpad_area">
+                <div class="score_mark">
+                    <span class="right">
+                        <i class="bx bx-cool"></i>
+                        Acertos:
+                        <span></span>
+                    </span>
+                    <span class="wrong">
+                        <i class="bx bx-angry"></i>
+                        Erros:
+                        <span></span>
+                    </span>
+                </div>
+                <div class="input-numeric-container">
+                    <input
+                        type="number"
+                        class="number_input"
+                        id="number_input"
+                        readonly
+                    />
+                    <table class="table-numeric">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="1"
+                                    >
+                                        <span>1</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="2"
+                                    >
+                                        <span>2</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="3"
+                                    >
+                                        <span>3</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="4"
+                                    >
+                                        <span>4</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="5"
+                                    >
+                                        <span>5</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="6"
+                                    >
+                                        <span>6</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="7"
+                                    >
+                                        <span>7</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="8"
+                                    >
+                                        <span>8</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="9"
+                                    >
+                                        <span>9</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key key-del"
+                                        data-key="DEL"
+                                    >
+                                        <span
+                                            ><i class="bx bxs-tag-x"></i
+                                        ></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key"
+                                        data-key="0"
+                                    >
+                                        <span>0</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        class="key key-enter"
+                                        data-key="OK"
+                                    >
+                                        <span
+                                            ><i
+                                                class="bx bx-subdirectory-left"
+                                            ></i
+                                        ></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <section class="signIn_screen hide">
+            <h3>Informações de usuário</h3>
+            <form>
+                <div class="username_div">
+                    <label for="input_name">Nome:</label>
+                    <input
+                        type="text"
+                        id="input_name"
+                        class="signIn_input"
+                        maxlength="20"
+                        placeholder="Digite seu nome ou apelido"
+                    />
+                </div>
+                <div class="class_div">
+                    <label for="input_class">Turma:</label>
+                    <input
+                        type="text"
+                        id="input_class"
+                        class="signIn_input"
+                        maxlength="20"
+                        placeholder="Digite qual é a sua turma"
+                    />
+                </div>
+                <div class="avatar_selector">
+                    <p>Escolha seu avatar:</p>
+                    <div class="avatar_container">
+                        <div class="avatar_item" id="avatar-1">
+                            <img
+                                src="./img/avatars/avatar-1.png"
+                                alt="Avatar"
+                                id="avatar-img-1"
+                            />
+                            <img
+                                src="./img/avatars/selected-indicator.png"
+                                class="avatar_selected_indicator"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-2">
+                            <img
+                                src="./img/avatars/avatar-2.png"
+                                alt="Avatar"
+                                id="avatar-img-2"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-3">
+                            <img
+                                src="./img/avatars/avatar-3.png"
+                                alt="Avatar"
+                                id="avatar-img-3"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-4">
+                            <img
+                                src="./img/avatars/avatar-4.png"
+                                alt="Avatar"
+                                id="avatar-img-4"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-5">
+                            <img
+                                src="./img/avatars/avatar-5.png"
+                                alt="Avatar"
+                                id="avatar-img-5"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-6">
+                            <img
+                                src="./img/avatars/avatar-6.png"
+                                alt="Avatar"
+                                id="avatar-img-6"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-7">
+                            <img
+                                src="./img/avatars/avatar-7.png"
+                                alt="Avatar"
+                                id="avatar-img-7"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-8">
+                            <img
+                                src="./img/avatars/avatar-8.png"
+                                alt="Avatar"
+                                id="avatar-img-8"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-9">
+                            <img
+                                src="./img/avatars/avatar-9.png"
+                                alt="Avatar"
+                                id="avatar-img-9"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-10">
+                            <img
+                                src="./img/avatars/avatar-10.png"
+                                alt="Avatar"
+                                id="avatar-img-10"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-11">
+                            <img
+                                src="./img/avatars/avatar-11.png"
+                                alt="Avatar"
+                                id="avatar-img-11"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-12">
+                            <img
+                                src="./img/avatars/avatar-12.png"
+                                alt="Avatar"
+                                id="avatar-img-12"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-13">
+                            <img
+                                src="./img/avatars/avatar-13.png"
+                                alt="Avatar"
+                                id="avatar-img-13"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-14">
+                            <img
+                                src="./img/avatars/avatar-14.png"
+                                alt="Avatar"
+                                id="avatar-img-14"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-15">
+                            <img
+                                src="./img/avatars/avatar-15.png"
+                                alt="Avatar"
+                                id="avatar-img-15"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-16">
+                            <img
+                                src="./img/avatars/avatar-16.png"
+                                alt="Avatar"
+                                id="avatar-img-16"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-17">
+                            <img
+                                src="./img/avatars/avatar-17.png"
+                                alt="Avatar"
+                                id="avatar-img-17"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-18">
+                            <img
+                                src="./img/avatars/avatar-18.png"
+                                alt="Avatar"
+                                id="avatar-img-18"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-19">
+                            <img
+                                src="./img/avatars/avatar-19.png"
+                                alt="Avatar"
+                                id="avatar-img-19"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-20">
+                            <img
+                                src="./img/avatars/avatar-20.png"
+                                alt="Avatar"
+                                id="avatar-img-20"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-21">
+                            <img
+                                src="./img/avatars/avatar-21.png"
+                                alt="Avatar"
+                                id="avatar-img-21"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-22">
+                            <img
+                                src="./img/avatars/avatar-22.png"
+                                alt="Avatar"
+                                id="avatar-img-22"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-23">
+                            <img
+                                src="./img/avatars/avatar-23.png"
+                                alt="Avatar"
+                                id="avatar-img-23"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-24">
+                            <img
+                                src="./img/avatars/avatar-24.png"
+                                alt="Avatar"
+                                id="avatar-img-24"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-25">
+                            <img
+                                src="./img/avatars/avatar-25.png"
+                                alt="Avatar"
+                                id="avatar-img-25"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-26">
+                            <img
+                                src="./img/avatars/avatar-26.png"
+                                alt="Avatar"
+                                id="avatar-img-26"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-27">
+                            <img
+                                src="./img/avatars/avatar-27.png"
+                                alt="Avatar"
+                                id="avatar-img-27"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-28">
+                            <img
+                                src="./img/avatars/avatar-28.png"
+                                alt="Avatar"
+                                id="avatar-img-28"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-29">
+                            <img
+                                src="./img/avatars/avatar-29.png"
+                                alt="Avatar"
+                                id="avatar-img-29"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-30">
+                            <img
+                                src="./img/avatars/avatar-30.png"
+                                alt="Avatar"
+                                id="avatar-img-30"
+                            />
+                        </div>
+                        <div class="avatar_item" id="avatar-31">
+                            <img
+                                src="./img/avatars/avatar-31.png"
+                                alt="Avatar"
+                                id="avatar-img-31"
+                            />
+                        </div>
+                    </div>
+                    <span class="avatar_message"
+                        >Role para os lados para ver mais</span
+                    >
+                </div>
+                <span class="button_save">Salvar</span>
+            </form>
+        </section>
+
+        <section class="home_screen">
+            <h3>Jogo da tabuada de Glécio</h3>
+            <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
+
+            <div class="group_actions_buttons">
+                <button class="start_btn">
+                    <i class="bx bxs-right-arrow"></i>
+                    Começar
+                </button>
+                <button class="view_leaderboard_btn">
+                    <i class="bx bx-trophy"></i>
+                    Ver Placar
+                </button>
+            </div>
+            <span class="bestScore homeBestScore" id="homeBestScore">
+                Sua maior pontuação: 0
+            </span>
+
+            <span class="credits"
+                >Jogo criado por
+                <a
+                    href="http://github.com/ldavi05"
+                    title="Siga Lucas Davi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Lucas Davi</a
+                >
+                e
+                <a
+                    href="http://github.com/luizlealdev"
+                    title="Siga Luiz Leal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Luiz Leal</a
+                ></span
+            >
+        </section>
+
+        <section class="final_screen">
+            <h3>O Tempo Acabou!</h3>
+            <p>Seu Resultado:</p>
+
+            <div class="results">
+                <div class="result right">
+                    <span class="result-number correct"></span>
+                    <span class="result-text">Acertos</span>
+                </div>
+                <div class="result wrong">
+                    <span class="result-number incorrect"></span>
+                    <span class="result-text">Erros</span>
+                </div>
+            </div>
+
+            <span class="bestScore" id="bestScore">
+                Sua maior pontuação: 0
+            </span>
+
+            <div class="group_actions_buttons">
+                <button class="restart_btn">
+                    <i class="bx bx-revision"></i>
+                    Reiniciar
+                </button>
+                <button class="view_leaderboard_btn">
+                    <i class="bx bx-trophy"></i>
+                    Ver Placar
+                </button>
+            </div>
+
+            <p class="credits">
+                Jogo criado por
+                <a
+                    href="http://github.com/ldavi05"
+                    title="Siga Lucas Davi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Lucas Davi</a
+                >
+                e
+                <a
+                    href="http://github.com/luizlealdev"
+                    title="Siga Luiz Leal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Luiz Leal</a
+                >
+            </p>
+        </section>
+
+        <div class="overlay"></div>
+
+        <div class="alertModal">
+            <div class="modalContent">
+                <h1 class="modalTitle">Aviso</h1>
+                <p class="modalText">
+                    Esta versão do jogo da tabuada do professor Glécio foi
+                    descontinuada, recomendamos que acesse a nova versão
+                    melhorada.
+                </p>
+                <div class="modalButtons">
+                    <button id="fuckThisGame">Dispensar</button>
+                    <button>
+                        <a
+                            href="https://jogo-do-glecio.vercel.app"
+                            class="buttonLink"
+                            >Acessar</a
+                        >
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="bar_area">
-        <div class="speed_bar">
-          <span class="index"></span>
+        <div class="leaderboard_window fade">
+            <div class="leaderboard_header">
+                <div>
+                    <h4>Placar de pontos</h4>
+                    <p>Veja quem se sai melhor na competição</p>
+                </div>
+                <i class="bx bx-x btn_close_leaderboard"></i>
+            </div>
+            <div class="table_container">
+                <table class="wp-table">
+                    <img
+                        id="leaderboard_loading_gif"
+                        src="https://media.tenor.com/cJTSvduh3UwAAAAi/superhirn-mathematics.gif"
+                        alt="Carregando..."
+                    />
+                </table>
+            </div>
         </div>
-      </div>
 
-      <section class="current_multiplication">
-        <span class="number number_1"> </span>
-        <span>x</span>
-        <span class="number number_2"> </span>
-      </section>
+        <script type="module">
+            document
+                .getElementById("fuckThisGame")
+                .addEventListener("click", () => {
+                    document.querySelector(".alertModal").style.display = "none";
+                });
 
-      <div class="numpad_area">
-        <div class="score_mark">
-          <span class="right">
-            <i class="bx bx-cool"></i>
-            Acertos:
-            <span></span>
-          </span>
-          <span class="wrong">
-            <i class="bx bx-angry"></i>
-            Erros:
-            <span></span>
-          </span>
-        </div>
-        <div class="input-numeric-container">
-          <input
-            type="number"
-            class="number_input"
-            id="number_input"
-            readonly
-          />
-          <table class="table-numeric">
-            <tbody>
-              <tr>
-                <td>
-                  <button type="button" class="key" data-key="1">
-                    <span>1</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="2">
-                    <span>2</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="3">
-                    <span>3</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button type="button" class="key" data-key="4">
-                    <span>4</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="5">
-                    <span>5</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="6">
-                    <span>6</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button type="button" class="key" data-key="7">
-                    <span>7</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="8">
-                    <span>8</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="9">
-                    <span>9</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button type="button" class="key key-del" data-key="DEL">
-                    <span><i class="bx bxs-tag-x"></i></span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key" data-key="0">
-                    <span>0</span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="key key-enter" data-key="OK">
-                    <span><i class="bx bx-subdirectory-left"></i></span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
+            // defininição das variáveis globais
+            let multiplicando,
+                multiplicador,
+                respostaCorreta,
+                acertos = 0,
+                erros = 0;
+            let tempoRestante;
+            let intervalo;
+            let multiplicacoesExibidas = new Set();
+            let clickCooldown = false;
 
-    <section class="signIn_screen hide">
-      <h3>Informações de usuário</h3>
-      <form>
-        <div class="username_div">
-          <label for="input_name">Nome:</label>
-          <input
-            type="text"
-            id="input_name"
-            class="signIn_input"
-            maxlength="20"
-            placeholder="Digite seu nome ou apelido"
-          />
-        </div>
-        <div class="class_div">
-          <label for="input_class">Turma:</label>
-          <input
-            type="text"
-            id="input_class"
-            class="signIn_input"
-            maxlength="20"
-            placeholder="Digite qual é a sua turma"
-          />
-        </div>
-        <div class="avatar_selector">
-          <p>Escolha seu avatar:</p>
-          <div class="avatar_container">
-            <div class="avatar_item" id="avatar-1">
-              <img
-                src="./img/avatars/avatar-1.png"
-                alt="Avatar"
-                id="avatar-img-1"
-              />
-              <img
-                src="./img/avatars/selected-indicator.png"
-                class="avatar_selected_indicator"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-2">
-              <img
-                src="./img/avatars/avatar-2.png"
-                alt="Avatar"
-                id="avatar-img-2"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-3">
-              <img
-                src="./img/avatars/avatar-3.png"
-                alt="Avatar"
-                id="avatar-img-3"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-4">
-              <img
-                src="./img/avatars/avatar-4.png"
-                alt="Avatar"
-                id="avatar-img-4"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-5">
-              <img
-                src="./img/avatars/avatar-5.png"
-                alt="Avatar"
-                id="avatar-img-5"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-6">
-              <img
-                src="./img/avatars/avatar-6.png"
-                alt="Avatar"
-                id="avatar-img-6"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-7">
-              <img
-                src="./img/avatars/avatar-7.png"
-                alt="Avatar"
-                id="avatar-img-7"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-8">
-              <img
-                src="./img/avatars/avatar-8.png"
-                alt="Avatar"
-                id="avatar-img-8"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-9">
-              <img
-                src="./img/avatars/avatar-9.png"
-                alt="Avatar"
-                id="avatar-img-9"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-10">
-              <img
-                src="./img/avatars/avatar-10.png"
-                alt="Avatar"
-                id="avatar-img-10"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-11">
-              <img
-                src="./img/avatars/avatar-11.png"
-                alt="Avatar"
-                id="avatar-img-11"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-12">
-              <img
-                src="./img/avatars/avatar-12.png"
-                alt="Avatar"
-                id="avatar-img-12"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-13">
-              <img
-                src="./img/avatars/avatar-13.png"
-                alt="Avatar"
-                id="avatar-img-13"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-14">
-              <img
-                src="./img/avatars/avatar-14.png"
-                alt="Avatar"
-                id="avatar-img-14"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-15">
-              <img
-                src="./img/avatars/avatar-15.png"
-                alt="Avatar"
-                id="avatar-img-15"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-16">
-              <img
-                src="./img/avatars/avatar-16.png"
-                alt="Avatar"
-                id="avatar-img-16"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-17">
-              <img
-                src="./img/avatars/avatar-17.png"
-                alt="Avatar"
-                id="avatar-img-17"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-18">
-              <img
-                src="./img/avatars/avatar-18.png"
-                alt="Avatar"
-                id="avatar-img-18"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-19">
-              <img
-                src="./img/avatars/avatar-19.png"
-                alt="Avatar"
-                id="avatar-img-19"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-20">
-              <img
-                src="./img/avatars/avatar-20.png"
-                alt="Avatar"
-                id="avatar-img-20"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-21">
-              <img
-                src="./img/avatars/avatar-21.png"
-                alt="Avatar"
-                id="avatar-img-21"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-22">
-              <img
-                src="./img/avatars/avatar-22.png"
-                alt="Avatar"
-                id="avatar-img-22"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-23">
-              <img
-                src="./img/avatars/avatar-23.png"
-                alt="Avatar"
-                id="avatar-img-23"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-24">
-              <img
-                src="./img/avatars/avatar-24.png"
-                alt="Avatar"
-                id="avatar-img-24"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-25">
-              <img
-                src="./img/avatars/avatar-25.png"
-                alt="Avatar"
-                id="avatar-img-25"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-26">
-              <img
-                src="./img/avatars/avatar-26.png"
-                alt="Avatar"
-                id="avatar-img-26"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-27">
-              <img
-                src="./img/avatars/avatar-27.png"
-                alt="Avatar"
-                id="avatar-img-27"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-28">
-              <img
-                src="./img/avatars/avatar-28.png"
-                alt="Avatar"
-                id="avatar-img-28"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-29">
-              <img
-                src="./img/avatars/avatar-29.png"
-                alt="Avatar"
-                id="avatar-img-29"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-30">
-              <img
-                src="./img/avatars/avatar-30.png"
-                alt="Avatar"
-                id="avatar-img-30"
-              />
-            </div>
-            <div class="avatar_item" id="avatar-31">
-              <img
-                src="./img/avatars/avatar-31.png"
-                alt="Avatar"
-                id="avatar-img-31"
-              />
-            </div>
-          </div>
-          <span class="avatar_message">Role para os lados para ver mais</span>
-        </div>
-        <span class="button_save">Salvar</span>
-      </form>
-    </section>
-
-    <section class="home_screen">
-      <h3>Jogo da tabuada de Glécio</h3>
-      <p>Teste seus conhecimentos e treine para não passar vergonha.</p>
-
-      <div class="group_actions_buttons">
-        <button class="start_btn">
-          <i class="bx bxs-right-arrow"></i>
-          Começar
-        </button>
-        <button class="view_leaderboard_btn">
-          <i class="bx bx-trophy"></i>
-          Ver Placar
-        </button>
-      </div>
-      <span class="bestScore homeBestScore" id="homeBestScore">
-        Sua maior pontuação: 0
-      </span>
-
-      <span class="credits"
-        >Jogo criado por
-        <a
-          href="http://github.com/ldavi05"
-          title="Siga Lucas Davi"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Lucas Davi</a
-        >
-        e
-        <a
-          href="http://github.com/luizlealdev"
-          title="Siga Luiz Leal"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Luiz Leal</a
-        ></span
-      >
-    </section>
-
-    <section class="final_screen">
-      <h3>O Tempo Acabou!</h3>
-      <p>Seu Resultado:</p>
-
-      <div class="results">
-        <div class="result right">
-          <span class="result-number correct"></span>
-          <span class="result-text">Acertos</span>
-        </div>
-        <div class="result wrong">
-          <span class="result-number incorrect"></span>
-          <span class="result-text">Erros</span>
-        </div>
-      </div>
-
-      <span class="bestScore" id="bestScore"> Sua maior pontuação: 0 </span>
-
-      <div class="group_actions_buttons">
-        <button class="restart_btn">
-          <i class="bx bx-revision"></i>
-          Reiniciar
-        </button>
-        <button class="view_leaderboard_btn">
-          <i class="bx bx-trophy"></i>
-          Ver Placar
-        </button>
-      </div>
-
-      <p class="credits">
-        Jogo criado por
-        <a
-          href="http://github.com/ldavi05"
-          title="Siga Lucas Davi"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Lucas Davi</a
-        >
-        e
-        <a
-          href="http://github.com/luizlealdev"
-          title="Siga Luiz Leal"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Luiz Leal</a
-        >
-      </p>
-    </section>
-
-    <div class="overlay"></div>
-
-    <div class="leaderboard_window fade">
-      <div class="leaderboard_header">
-        <div>
-          <h4>Placar de pontos</h4>
-          <p>Veja quem se sai melhor na competição</p>
-        </div>
-        <i class="bx bx-x btn_close_leaderboard"></i>
-      </div>
-      <div class="table_container">
-        <table class="wp-table">
-          <img
-            id="leaderboard_loading_gif"
-            src="https://media.tenor.com/cJTSvduh3UwAAAAi/superhirn-mathematics.gif"
-            alt="Carregando..."
-          />
-        </table>
-      </div>
-    </div>
-
-    <script type="module">
-      // defininição das variáveis globais
-      let multiplicando,
-        multiplicador,
-        respostaCorreta,
-        acertos = 0,
-        erros = 0;
-      let tempoRestante;
-      let intervalo;
-      let multiplicacoesExibidas = new Set();
-      let clickCooldown = false;
-
-      if (localStorage.getItem("score") === null) {
-        localStorage.setItem("score", "0");
-      }
-      document.getElementById(
-        "homeBestScore"
-      ).textContent = `Sua maior pontuação: ${localStorage.getItem("score")}`;
-
-      function iniciarTempo() {
-        tempoRestante = 600;
-        clearInterval(intervalo);
-
-        intervalo = setInterval(() => {
-          tempoRestante--;
-          atualizarBarraDeTempo();
-          if (tempoRestante <= 0) {
-            clearInterval(intervalo);
-            exibirMensagemDeFinal();
-
-            addToLeaderBoard("leaderboard/");
-
-            if (acertos > parseInt(localStorage.getItem("score"))) {
-              localStorage.setItem("score", acertos)              
-              addToLeaderBoard("leaderboard_global/");
+            if (localStorage.getItem("score") === null) {
+                localStorage.setItem("score", "0");
             }
-          }
-        }, 100);
-      }
+            document.getElementById(
+                "homeBestScore"
+            ).textContent = `Sua maior pontuação: ${localStorage.getItem(
+                "score"
+            )}`;
 
-      function atualizarBarraDeTempo() {
-        const timeBar = document.querySelector(".index");
-        const porcentagem = (tempoRestante / 600) * 100;
-        timeBar.style.width = porcentagem + "%";
-      }
+            function iniciarTempo() {
+                tempoRestante = 600;
+                clearInterval(intervalo);
 
-      function exibirMensagemDeFinal() {
-        const mensagemDiv = document.querySelector(".timeFinshed");
+                intervalo = setInterval(() => {
+                    tempoRestante--;
+                    atualizarBarraDeTempo();
+                    if (tempoRestante <= 0) {
+                        clearInterval(intervalo);
+                        exibirMensagemDeFinal();
 
-        mensagemDiv.classList.remove("hideTimeFinished");
+                        addToLeaderBoard("leaderboard/");
 
-        setTimeout(() => {
-          exibirTelaFinal();
-          setTimeout(() => {
-            mensagemDiv.classList.add("hideTimeFinished");
-          }, 1000);
-        }, 2000);
-      }
-
-      function exibirTelaFinal() {
-        const finalScreen = document.querySelector(".final_screen");
-        const totalAcertos = document.querySelector(".result-number.correct");
-        const totalErros = document.querySelector(".result-number.incorrect");
-        const bestScore = document.getElementById("bestScore");
-
-        totalAcertos.textContent = acertos;
-        totalErros.textContent = erros;
-        bestScore.textContent = `Sua maior pontuação: ${localStorage.getItem(
-          "score"
-        )}`;
-
-        finalScreen.classList.add("show_with_animation");
-
-        document
-          .querySelector(".restart_btn")
-          .addEventListener("click", function () {
-            //location.reload();
-            acertos = 0;
-            erros = 0;
-            atualizarInterface();
-            gerarNovaMultiplicacao();
-            iniciarTempo();
-            finalScreen.classList.remove("show_with_animation");
-          });
-      }
-
-      // iniciar o jogo
-      document
-        .querySelector(".start_btn")
-        .addEventListener("click", function () {
-          document
-            .querySelector(".home_screen")
-            .classList.add("hide_with_animation");
-          iniciarTempo();
-        });
-
-      // função para gerar uma multiplicação aleatória
-      function gerarNovaMultiplicacao() {
-        let novaMultiplicacao = false;
-        while (!novaMultiplicacao) {
-          multiplicando = Math.floor(Math.random() * 8) + 2;
-          multiplicador = Math.floor(Math.random() * 9) + 1;
-          respostaCorreta = multiplicando * multiplicador;
-
-          if (
-            !multiplicacoesExibidas.has(`${multiplicando}-${multiplicador}`)
-          ) {
-            novaMultiplicacao = true;
-            multiplicacoesExibidas.add(`${multiplicando}-${multiplicador}`);
-            setTimeout(() => {
-              multiplicacoesExibidas.delete(
-                `${multiplicando}-${multiplicador}`
-              );
-            }, 10000);
-          }
-        }
-        atualizarInterface();
-      }
-
-      // função para atualizar a interface com a nova multiplicação
-      function atualizarInterface() {
-        document.querySelector(".number_1").textContent = multiplicando;
-        document.querySelector(".number_2").textContent = multiplicador;
-        document.getElementById("number_input").value = "";
-        document.querySelector(".right span").textContent = acertos;
-        document.querySelector(".wrong span").textContent = erros;
-
-        document
-          .querySelector(".current_multiplication")
-          .classList.add("multiplication_animation");
-
-        setTimeout(() => {
-          document
-            .querySelector(".current_multiplication")
-            .classList.remove("multiplication_animation");
-        }, 200);
-      }
-
-      // evento para o botão OK pressionado
-      /*document.querySelector(".key-enter").addEventListener("click", function() {
-        if (clickCooldown) return;
-        clickCooldown = true;
-        setTimeout( () => clickCooldown = false, 100);
-
-        let input = parseInt(document.getElementById("number_input").value);
-        if (input === respostaCorreta) {
-          acertos++;
-        } else {
-          erros++;
-        }
-
-        gerarNovaMultiplicacao();
-
-        function reiniciar() {
-          acertos = 0;
-          erros = 0;
-          gerarNovaMultiplicacao();
-        }
-      });*/
-
-      const leaderBoardBtns = document.querySelectorAll(
-        ".view_leaderboard_btn"
-      );
-
-      leaderBoardBtns.forEach((button) => {
-        button.addEventListener("click", () => {
-          getTopLeaderboardEntries();
-          document
-            .querySelector(".leaderboard_window")
-            .classList.add("show_leaderboard");
-          document.querySelector(".overlay").classList.add("show");
-        });
-      });
-
-      document
-        .querySelector(".btn_close_leaderboard")
-        .addEventListener("click", () => {
-          document
-            .querySelector(".leaderboard_window")
-            .classList.remove("show_leaderboard");
-          document.querySelector(".overlay").classList.remove("show");
-        });
-
-      function reiniciar() {
-        acertos = 0;
-        erros = 0;
-        gerarNovaMultiplicacao();
-      }
-
-      // Teclado funcionando
-      const keys = document.querySelectorAll(".key");
-
-      keys.forEach((keyElement) => {
-        keyElement.addEventListener("pointerdown", function () {
-          let key = this.getAttribute("data-key");
-          let input = document.getElementById("number_input");
-
-          if (key == "DEL") {
-            input.value = input.value.slice(0, -1);
-          } else if (key == "OK") {
-            if (clickCooldown) return;
-            clickCooldown = true;
-            setTimeout(() => (clickCooldown = false), 250);
-
-            let inputVal = parseInt(input.value);
-            if (inputVal === respostaCorreta) {
-              acertos++;
-            } else {
-              erros++;
+                        if (acertos > parseInt(localStorage.getItem("score"))) {
+                            localStorage.setItem("score", acertos);
+                            addToLeaderBoard("leaderboard_global/");
+                        }
+                    }
+                }, 100);
             }
 
-            gerarNovaMultiplicacao();
-          } else {
-            input.value += key;
-          }
-        });
-      });
+            function atualizarBarraDeTempo() {
+                const timeBar = document.querySelector(".index");
+                const porcentagem = (tempoRestante / 600) * 100;
+                timeBar.style.width = porcentagem + "%";
+            }
 
-      // Captura de eventos do teclado de computador
-      document.addEventListener("keydown", function (e) {
-        const key = e.key;
-        const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-        const delKey = "Backspace";
-        const enter = "Enter";
-        let input = document.getElementById("number_input");
+            function exibirMensagemDeFinal() {
+                const mensagemDiv = document.querySelector(".timeFinshed");
 
-        console.log(key);
+                mensagemDiv.classList.remove("hideTimeFinished");
 
-        if (key == delKey) {
-          input.value = input.value.slice(0, -1);
-        } else if (key == enter) {
-          e.preventDefault();
-          if (clickCooldown) return;
-          clickCooldown = true;
-          setTimeout(() => (clickCooldown = false), 250);
+                setTimeout(() => {
+                    exibirTelaFinal();
+                    setTimeout(() => {
+                        mensagemDiv.classList.add("hideTimeFinished");
+                    }, 1000);
+                }, 2000);
+            }
 
-          let inputVal = parseInt(input.value);
-          if (inputVal === respostaCorreta) {
-            acertos++;
-          } else {
-            erros++;
-          }
+            function exibirTelaFinal() {
+                const finalScreen = document.querySelector(".final_screen");
+                const totalAcertos = document.querySelector(
+                    ".result-number.correct"
+                );
+                const totalErros = document.querySelector(
+                    ".result-number.incorrect"
+                );
+                const bestScore = document.getElementById("bestScore");
 
-          gerarNovaMultiplicacao();
-        } else if (numericKeys.includes(key)) {
-          input.value += key;
-        }
-      });
-      gerarNovaMultiplicacao();
+                totalAcertos.textContent = acertos;
+                totalErros.textContent = erros;
+                bestScore.textContent = `Sua maior pontuação: ${localStorage.getItem(
+                    "score"
+                )}`;
 
-      const signInScreen = document.querySelector(".signIn_screen");
+                finalScreen.classList.add("show_with_animation");
 
-      if (localStorage.getItem("username") === null) {
-        showSignInScreen();
-        signInScreen.classList.add("show_flex");
-      } else {
-        signInScreen.classList.add("hide");
-      }
+                document
+                    .querySelector(".restart_btn")
+                    .addEventListener("click", function () {
+                        //location.reload();
+                        acertos = 0;
+                        erros = 0;
+                        atualizarInterface();
+                        gerarNovaMultiplicacao();
+                        iniciarTempo();
+                        finalScreen.classList.remove("show_with_animation");
+                    });
+            }
 
-      document
-        .querySelector(".bx-user-circle")
-        .addEventListener("click", () => {
-          signInScreen.classList.remove("hide_with_animation");
-          signInScreen.classList.remove("hide");
+            // iniciar o jogo
+            document
+                .querySelector(".start_btn")
+                .addEventListener("click", function () {
+                    document
+                        .querySelector(".home_screen")
+                        .classList.add("hide_with_animation");
+                    iniciarTempo();
+                });
 
-          document.getElementById("input_name").value =
-            localStorage.getItem("username");
-          document.getElementById("input_class").value =
-            localStorage.getItem("userclass");
-          showSignInScreen();
-        });
+            // função para gerar uma multiplicação aleatória
+            function gerarNovaMultiplicacao() {
+                let novaMultiplicacao = false;
+                while (!novaMultiplicacao) {
+                    multiplicando = Math.floor(Math.random() * 8) + 2;
+                    multiplicador = Math.floor(Math.random() * 9) + 1;
+                    respostaCorreta = multiplicando * multiplicador;
 
-      function showSignInScreen() {
-        const buttonSave = document.querySelector(".button_save");
+                    if (
+                        !multiplicacoesExibidas.has(
+                            `${multiplicando}-${multiplicador}`
+                        )
+                    ) {
+                        novaMultiplicacao = true;
+                        multiplicacoesExibidas.add(
+                            `${multiplicando}-${multiplicador}`
+                        );
+                        setTimeout(() => {
+                            multiplicacoesExibidas.delete(
+                                `${multiplicando}-${multiplicador}`
+                            );
+                        }, 10000);
+                    }
+                }
+                atualizarInterface();
+            }
 
-        // Remove existing event listeners to prevent multiple bindings
-        const newButtonSave = buttonSave.cloneNode(true);
-        buttonSave.parentNode.replaceChild(newButtonSave, buttonSave);
+            // função para atualizar a interface com a nova multiplicação
+            function atualizarInterface() {
+                document.querySelector(".number_1").textContent = multiplicando;
+                document.querySelector(".number_2").textContent = multiplicador;
+                document.getElementById("number_input").value = "";
+                document.querySelector(".right span").textContent = acertos;
+                document.querySelector(".wrong span").textContent = erros;
 
-        newButtonSave.addEventListener("click", () => {
-          const inputName = document.getElementById("input_name").value;
-          const inputClass = document.getElementById("input_class").value;
+                document
+                    .querySelector(".current_multiplication")
+                    .classList.add("multiplication_animation");
 
-          if (inputName && inputClass) {
-            localStorage.setItem("username", inputName.trim());
-            localStorage.setItem("userclass", inputClass.trim());
-            localStorage.setItem(
-              "userId",
-              localStorage.getItem("userId") != null
-                ? localStorage.getItem("userId")
-                : generateId()
+                setTimeout(() => {
+                    document
+                        .querySelector(".current_multiplication")
+                        .classList.remove("multiplication_animation");
+                }, 200);
+            }
+
+            // evento para o botão OK pressionado
+            /*document.querySelector(".key-enter").addEventListener("click", function() {
+              if (clickCooldown) return;
+              clickCooldown = true;
+              setTimeout( () => clickCooldown = false, 100);
+
+              let input = parseInt(document.getElementById("number_input").value);
+              if (input === respostaCorreta) {
+                acertos++;
+              } else {
+                erros++;
+              }
+
+              gerarNovaMultiplicacao();
+
+              function reiniciar() {
+                acertos = 0;
+                erros = 0;
+                gerarNovaMultiplicacao();
+              }
+            });*/
+
+            const leaderBoardBtns = document.querySelectorAll(
+                ".view_leaderboard_btn"
             );
 
-            signInScreen.classList.add("hide_with_animation");
-          } else {
-            alert("Preencha todos os campos");
-          }
-        });
-      }
-
-      function generateId() {
-        const characters =
-          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        let id = "";
-        for (let i = 0; i < 14; i++) {
-          const randomIndex = Math.floor(Math.random() * characters.length);
-          id += characters.charAt(randomIndex);
-        }
-        return id;
-      }
-
-      const avatarItem = document.querySelectorAll(".avatar_item");
-
-      avatarItem.forEach((item) => {
-        item.addEventListener("click", () => {
-          const selectedIndicator = document.querySelector(
-            ".avatar_selected_indicator"
-          );
-          selectedIndicator.parentNode.removeChild(selectedIndicator);
-
-          item.appendChild(selectedIndicator);
-
-          let avatarId = selectedIndicator.parentNode.id;
-          localStorage.setItem("avatarId", avatarId);
-          console.log(localStorage.getItem("avatarId"));
-        });
-      });
-
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js";
-
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyBZaYOCSFC-KVaJreVNUXNjs4haShrSM38",
-        authDomain: "tabuada-glecio.firebaseapp.com",
-        databaseURL: "https://tabuada-glecio-default-rtdb.firebaseio.com",
-        projectId: "tabuada-glecio",
-        storageBucket: "tabuada-glecio.appspot.com",
-        messagingSenderId: "1010790211554",
-        appId: "1:1010790211554:web:fa49e02bff19c19006a3bb",
-        measurementId: "G-SN1T3QVT49",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-
-      import {
-        getDatabase,
-        ref,
-        child,
-        get,
-        set,
-        update,
-        query,
-        orderByChild,
-        limitToFirst,
-        remove,
-      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
-
-      const db = getDatabase();
-
-      /*const dbRef = ref(db);
-              get(child(dbRef, "leaderboard/"))
-                .then((snapshot) => {
-                  console.log(snapshot);
-                })
-                .catch((e) => {
-                  console.error(e);
-                });*/
-
-      function addToLeaderBoard(path) {
-        let avatarId;
-        if (localStorage.getItem("avatarId") === null) {
-          avatarId = "avatar-1";
-        } else {
-          avatarId = localStorage.getItem("avatarId");
-        }
-
-        const userId = localStorage.getItem("userId");
-        const username = localStorage.getItem("username");
-        const userClass = localStorage.getItem("userclass");
-        const score = acertos;
-
-        if (userId && username && userClass && score !== undefined) {
-          set(ref(db, path + userId), {
-            username: username,
-            userClass: userClass,
-            avatarId: avatarId,
-            score: score,
-          }).catch((e) => {
-            console.error(e);
-          });
-        } else {
-          console.error("Missing user information or score");
-        }
-      }
-
-      async function getTopLeaderboardEntries() {
-        const dbRef = ref(db, "leaderboard");
-        const leaderboardQuery = query(dbRef, orderByChild("score"));
-
-        try {
-          const snapshot = await get(leaderboardQuery);
-          if (snapshot.exists()) {
-            const leaderboardEntries = [];
-            snapshot.forEach((childSnapshot) => {
-              const data = childSnapshot.val();
-              leaderboardEntries.push({
-                username: data.username,
-                class: data.userClass,
-                avatarId: data.avatarId,
-                score: data.score,
-              });
+            leaderBoardBtns.forEach((button) => {
+                button.addEventListener("click", () => {
+                    getTopLeaderboardEntries();
+                    document
+                        .querySelector(".leaderboard_window")
+                        .classList.add("show_leaderboard");
+                    document.querySelector(".overlay").classList.add("show");
+                });
             });
 
-            leaderboardEntries.sort((a, b) => b.score - a.score);
-            updateLeaderBoard(leaderboardEntries);
-            document.getElementById("leaderboard_loading_gif").style.display =
-              "none";
-          } else {
-            console.log("No data available");
-          }
-        } catch (error) {
-          console.error("Error getting leaderboard entries:", error);
-        }
-      }
+            document
+                .querySelector(".btn_close_leaderboard")
+                .addEventListener("click", () => {
+                    document
+                        .querySelector(".leaderboard_window")
+                        .classList.remove("show_leaderboard");
+                    document.querySelector(".overlay").classList.remove("show");
+                });
 
-      function updateLeaderBoard(entries) {
-        const table = document.querySelector(".wp-table");
+            function reiniciar() {
+                acertos = 0;
+                erros = 0;
+                gerarNovaMultiplicacao();
+            }
 
-        let avatarId =
-          entries.avatarId === undefined ? "avatar-1" : entries.avatarId;
+            // Teclado funcionando
+            const keys = document.querySelectorAll(".key");
 
-        table.innerHTML =
-          `<tr>
-                  <th>Posição</th>
-                  <th>Nome</th>
-                  <th>Turma</th>
-                  <th>Pontos</th>
-                </tr>` +
-          entries
-            .map(
-              (entry, i) => `<tr>
-                  <td class="td_position">${i + 1}</td>
-                  <td class="td_username">
-                    <img
-                      src="./img/avatars/${(avatarId =
-                        entry.avatarId === undefined
-                          ? "avatar-1"
-                          : entry.avatarId)}.png"
-                      class="user_avatar"
-                      alt="Avatar"
-                    />
-                    ${entry.username}
-                  </td>
-                  <td class="td_class"> ${entry.class}</td>
-                  <td class="td_score"> ${entry.score}</td>
-                </tr>`
-            )
-            .join("");
-      }
-    </script>
-  </body>
+            keys.forEach((keyElement) => {
+                keyElement.addEventListener("pointerdown", function () {
+                    let key = this.getAttribute("data-key");
+                    let input = document.getElementById("number_input");
+
+                    if (key == "DEL") {
+                        input.value = input.value.slice(0, -1);
+                    } else if (key == "OK") {
+                        if (clickCooldown) return;
+                        clickCooldown = true;
+                        setTimeout(() => (clickCooldown = false), 250);
+
+                        let inputVal = parseInt(input.value);
+                        if (inputVal === respostaCorreta) {
+                            acertos++;
+                        } else {
+                            erros++;
+                        }
+
+                        gerarNovaMultiplicacao();
+                    } else {
+                        input.value += key;
+                    }
+                });
+            });
+
+            // Captura de eventos do teclado de computador
+            document.addEventListener("keydown", function (e) {
+                const key = e.key;
+                const numericKeys = [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "0",
+                ];
+                const delKey = "Backspace";
+                const enter = "Enter";
+                let input = document.getElementById("number_input");
+
+                console.log(key);
+
+                if (key == delKey) {
+                    input.value = input.value.slice(0, -1);
+                } else if (key == enter) {
+                    e.preventDefault();
+                    if (clickCooldown) return;
+                    clickCooldown = true;
+                    setTimeout(() => (clickCooldown = false), 250);
+
+                    let inputVal = parseInt(input.value);
+                    if (inputVal === respostaCorreta) {
+                        acertos++;
+                    } else {
+                        erros++;
+                    }
+
+                    gerarNovaMultiplicacao();
+                } else if (numericKeys.includes(key)) {
+                    input.value += key;
+                }
+            });
+            gerarNovaMultiplicacao();
+
+            const signInScreen = document.querySelector(".signIn_screen");
+
+            if (localStorage.getItem("username") === null) {
+                showSignInScreen();
+                signInScreen.classList.add("show_flex");
+            } else {
+                signInScreen.classList.add("hide");
+            }
+
+            document
+                .querySelector(".bx-user-circle")
+                .addEventListener("click", () => {
+                    signInScreen.classList.remove("hide_with_animation");
+                    signInScreen.classList.remove("hide");
+
+                    document.getElementById("input_name").value =
+                        localStorage.getItem("username");
+                    document.getElementById("input_class").value =
+                        localStorage.getItem("userclass");
+                    showSignInScreen();
+                });
+
+            function showSignInScreen() {
+                const buttonSave = document.querySelector(".button_save");
+
+                // Remove existing event listeners to prevent multiple bindings
+                const newButtonSave = buttonSave.cloneNode(true);
+                buttonSave.parentNode.replaceChild(newButtonSave, buttonSave);
+
+                newButtonSave.addEventListener("click", () => {
+                    const inputName =
+                        document.getElementById("input_name").value;
+                    const inputClass =
+                        document.getElementById("input_class").value;
+
+                    if (inputName && inputClass) {
+                        localStorage.setItem("username", inputName.trim());
+                        localStorage.setItem("userclass", inputClass.trim());
+                        localStorage.setItem(
+                            "userId",
+                            localStorage.getItem("userId") != null
+                                ? localStorage.getItem("userId")
+                                : generateId()
+                        );
+
+                        signInScreen.classList.add("hide_with_animation");
+                    } else {
+                        alert("Preencha todos os campos");
+                    }
+                });
+            }
+
+            function generateId() {
+                const characters =
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                let id = "";
+                for (let i = 0; i < 14; i++) {
+                    const randomIndex = Math.floor(
+                        Math.random() * characters.length
+                    );
+                    id += characters.charAt(randomIndex);
+                }
+                return id;
+            }
+
+            const avatarItem = document.querySelectorAll(".avatar_item");
+
+            avatarItem.forEach((item) => {
+                item.addEventListener("click", () => {
+                    const selectedIndicator = document.querySelector(
+                        ".avatar_selected_indicator"
+                    );
+                    selectedIndicator.parentNode.removeChild(selectedIndicator);
+
+                    item.appendChild(selectedIndicator);
+
+                    let avatarId = selectedIndicator.parentNode.id;
+                    localStorage.setItem("avatarId", avatarId);
+                    console.log(localStorage.getItem("avatarId"));
+                });
+            });
+
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js";
+
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyBZaYOCSFC-KVaJreVNUXNjs4haShrSM38",
+                authDomain: "tabuada-glecio.firebaseapp.com",
+                databaseURL:
+                    "https://tabuada-glecio-default-rtdb.firebaseio.com",
+                projectId: "tabuada-glecio",
+                storageBucket: "tabuada-glecio.appspot.com",
+                messagingSenderId: "1010790211554",
+                appId: "1:1010790211554:web:fa49e02bff19c19006a3bb",
+                measurementId: "G-SN1T3QVT49",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+
+            import {
+                getDatabase,
+                ref,
+                child,
+                get,
+                set,
+                update,
+                query,
+                orderByChild,
+                limitToFirst,
+                remove,
+            } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
+
+            const db = getDatabase();
+
+            /*const dbRef = ref(db);
+                    get(child(dbRef, "leaderboard/"))
+                      .then((snapshot) => {
+                        console.log(snapshot);
+                      })
+                      .catch((e) => {
+                        console.error(e);
+                      });*/
+
+            function addToLeaderBoard(path) {
+                let avatarId;
+                if (localStorage.getItem("avatarId") === null) {
+                    avatarId = "avatar-1";
+                } else {
+                    avatarId = localStorage.getItem("avatarId");
+                }
+
+                const userId = localStorage.getItem("userId");
+                const username = localStorage.getItem("username");
+                const userClass = localStorage.getItem("userclass");
+                const score = acertos;
+
+                if (userId && username && userClass && score !== undefined) {
+                    set(ref(db, path + userId), {
+                        username: username,
+                        userClass: userClass,
+                        avatarId: avatarId,
+                        score: score,
+                    }).catch((e) => {
+                        console.error(e);
+                    });
+                } else {
+                    console.error("Missing user information or score");
+                }
+            }
+
+            async function getTopLeaderboardEntries() {
+                const dbRef = ref(db, "leaderboard");
+                const leaderboardQuery = query(dbRef, orderByChild("score"));
+
+                try {
+                    const snapshot = await get(leaderboardQuery);
+                    if (snapshot.exists()) {
+                        const leaderboardEntries = [];
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            leaderboardEntries.push({
+                                username: data.username,
+                                class: data.userClass,
+                                avatarId: data.avatarId,
+                                score: data.score,
+                            });
+                        });
+
+                        leaderboardEntries.sort((a, b) => b.score - a.score);
+                        updateLeaderBoard(leaderboardEntries);
+                        document.getElementById(
+                            "leaderboard_loading_gif"
+                        ).style.display = "none";
+                    } else {
+                        console.log("No data available");
+                    }
+                } catch (error) {
+                    console.error("Error getting leaderboard entries:", error);
+                }
+            }
+
+            function updateLeaderBoard(entries) {
+                const table = document.querySelector(".wp-table");
+
+                let avatarId =
+                    entries.avatarId === undefined
+                        ? "avatar-1"
+                        : entries.avatarId;
+
+                table.innerHTML =
+                    `<tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Turma</th>
+                        <th>Pontos</th>
+                      </tr>` +
+                    entries
+                        .map(
+                            (entry, i) => `<tr>
+                        <td class="td_position">${i + 1}</td>
+                        <td class="td_username">
+                          <img
+                            src="./img/avatars/${(avatarId =
+                                entry.avatarId === undefined
+                                    ? "avatar-1"
+                                    : entry.avatarId)}.png"
+                            class="user_avatar"
+                            alt="Avatar"
+                          />
+                          ${entry.username}
+                        </td>
+                        <td class="td_class"> ${entry.class}</td>
+                        <td class="td_score"> ${entry.score}</td>
+                      </tr>`
+                        )
+                        .join("");
+            }
+        </script>
+    </body>
 </html>

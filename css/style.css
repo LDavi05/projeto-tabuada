@@ -681,6 +681,76 @@ font-size: 1.5rem;
 	max-width: 100%;
 	margin-bottom: 2rem;
 }
+
+.alertModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modalContent {
+	height: 200px;
+	max-width: 350px;
+	width: 100%;
+	background-color: white;
+	border-radius: 12px;
+	border: 2px solid #d1d1d1;
+	margin: 0 8px;
+	padding: 12px;
+	position: relative;
+}
+
+.modalTitle {
+	color: #9265ff;
+}
+.modalText {
+	color:#afafaf ;
+	margin-top: 4px;
+}
+.modalButtons {
+	position: absolute;
+	bottom: 14px;
+	right: 8px;
+}
+.modalButtons button:nth-child(2) {
+	padding: 0.8rem 2rem;
+	background-color: #9265ff;
+	border: 2px solid #7e50ea;
+	color: #fff;
+	border: none;
+	border-radius: 12px;
+	font-family: "Fredoka", sans-serif !important;
+	top: 10px;
+	filter: drop-shadow(0px 7px 0px #6942c2) !important;
+	cursor: pointer;
+	align-items: center;
+	vertical-align: middle;
+}
+.modalButtons button:nth-child(1) {
+	padding: 0.8rem 2rem;
+	background: #fcfcfc;
+	border: 2px solid #d1d1d1 !important;
+	color: #9265ff;
+	border: none;
+	border-radius: 12px;
+	font-family: "Fredoka", sans-serif !important;
+	top: 10px;
+	filter: drop-shadow(0px 7px 0px #a3a3a3) !important;
+	cursor: pointer;
+	align-items: center;
+	vertical-align: middle;
+}
+.buttonLink {
+	color: #fff;
+	text-decoration: none;
+}
+
 @media (max-width: 800px) {
 	.hide_with_animation, .show_with_animation, .final_screen {
 		transition: all .2s ease;
